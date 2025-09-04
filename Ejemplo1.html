@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de JavaScript - Ejemplos</title>
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100vw;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 32px;
+            padding: 24px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            width: 95vw;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card img {
+            border-radius: 8px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+        .card-content {
+            flex: 1;
+        }
+        h1, h3 {
+            margin-top: 0;
+            color: #2d3a4b;
+        }
+        p {
+            color: #4a5568;
+        }
+        button {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 18px;
+            margin-right: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1e40af;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 10px 0;
+            }
+            .card {
+                flex-direction: column;
+                align-items: stretch;
+                width: 98vw;
+                padding: 12px;
+            }
+            .card img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <a href="index.html">Volver a la Página Principal</a>
+
+        <!-- Ejemplo 1 -->
+        <div class="card">
+            <div class="card-content">
+                <h1>Ejemplo 1: Selección de Elementos del DOM</h1>
+                <p>En este ejemplo, seleccionaremos elementos del DOM usando diferentes métodos.</p>
+                <div id="myDiv" class="myClass">Hello, World!</div>
+                <button id="changeText">Change Text</button>
+            </div>
+            <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 1">
+        </div>
+
+        <!-- Ejemplo 2 -->
+        <div class="card">
+            <div class="card-content">
+                <h1>Ejemplo 2: Manipulación de Contenido y Estilos</h1>
+                <p>Aquí cambiaremos el texto y los estilos de un elemento del DOM.</p>
+                <div id="myDiv1">Hello, World!</div>
+                <button id="changeText1">Change Text</button>
+                <button id="changeStyle1">Change Style</button>
+            </div>
+            <img src="Imagenes/Captura de pantalla 2025-08-28 094120.png" alt="Ejemplo 2">
+        </div>
+
+        <!-- Ejemplo 3 -->
+        <div class="card">
+            <div class="card-content">
+                <h1>Ejemplo 3: Eventos del DOM</h1>
+                <p>En este ejemplo, manejaremos eventos del DOM para interactuar con los elementos de la página.</p>
+                <div id="myDiv2" style="padding: 10px; border: 1px solid #ccc; width: fit-content; cursor: pointer;">Click me!</div>
+            </div>
+            <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 3">
+        </div>
+
+        <!-- Ejemplo 4 -->
+        <div class="card">
+            <div class="card-content">
+                <h1>Ejemplo 4: Crear una Página HTML Simple y Manipular el DOM con JavaScript</h1>
+                <p>Crea una página HTML con varios elementos y utiliza JavaScript para realizar diversas manipulaciones.</p>
+                <h2 id="title">My Web Page</h2>
+                <p class="text">This is a paragraph.</p>
+                <p class="text">This is another paragraph.</p>
+                <button id="changeContent">Change Content</button>
+                <button id="highlightText">Highlight Text</button>
+            </div>
+            <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 4">
+        </div>
+
+    </div>
+
+    <script>
+        // Ejemplo 1
+        const myDiv = document.getElementById('myDiv');
+        document.getElementById('changeText').addEventListener('click', () => {
+            myDiv.textContent = '¡Texto cambiado!';
+        });
+
+        // Ejemplo 2
+        const myDiv1 = document.getElementById('myDiv1');
+        document.getElementById('changeText1').addEventListener('click', () => {
+            myDiv1.textContent = 'Text Changed!';
+        });
+        document.getElementById('changeStyle1').addEventListener('click', () => {
+            myDiv1.style.color = 'red';
+            myDiv1.style.fontSize = '24px';
+        });
+
+        // Ejemplo 3
+        const myDiv2 = document.getElementById('myDiv2');
+        myDiv2.addEventListener('click', () => {
+            alert('Div clicked!');
+            myDiv2.style.backgroundColor = 'lightblue';
+        });
+        myDiv2.addEventListener('mouseover', () => {
+            myDiv2.style.backgroundColor = 'yellow';
+        });
+        myDiv2.addEventListener('mouseout', () => {
+            myDiv2.style.backgroundColor = '';
+        });
+
+        // Ejemplo 4
+        document.getElementById('changeContent').addEventListener('click', () => {
+            document.getElementById('title').textContent = 'Content Changed!';
+        });
+        document.getElementById('highlightText').addEventListener('click', () => {
+            const paragraphs = document.querySelectorAll('.text');
+            paragraphs.forEach(p => {
+                p.classList.toggle('highlight');
+            });
+        });
+    </script>
+</body>
+</html>

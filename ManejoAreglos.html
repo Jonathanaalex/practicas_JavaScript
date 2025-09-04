@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Arreglos y objetos en JavaScript</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Manejo de Arreglos y Objetos en JavaScript</h1>
+        <nav class="menu">
+            <a href="DOM.html">Ir a DOM</a>
+            <a href="/EjerciciosFunciones.html">Ir a Ejercicios de Funciones</a>
+            <a href="/ManejoAreglos.html">Ir a manejo de arreglos</a>
+        </nav>
+    </div>
+    <h1>Ejemplo de Manejo de Arreglos</h1>
+    <p>Una técnica fundamental en el manejo de arreglos es la iteración. Veamos un ejemplo usando un bucle for:</p>
+    <ul id="lista-frutas"></ul>
+    <img src="Imagenes/Captura de pantalla 2025-09-03 092415.png" alt="">
+    <p>Resultado de la variable <strong>frutas</strong>:</p>
+    <div id="resultado-frutas"></div>
+    <button onclick="mostrarFrutas()">Mostrar frutas</button>
+
+    <h1>Map</h1>
+    <p>El método <code>map</code> crea un nuevo arreglo con los resultados de la llamada a una función proporcionada aplicada a cada elemento del arreglo original. Aquí hay un ejemplo:</p>
+    <img src="Imagenes/Mayor.png" alt="">
+    <p>En este ejemplo, estamos utilizando <code>map</code> para crear un nuevo arreglo que contiene la longitud de cada fruta:</p>
+    <ul id="lista-longitudes"></ul>
+    <div id="resultado-map"></div>
+    <button onclick="mostrarMap()">Mostrar resultado de map</button>
+
+    <h1>Filter</h1>
+    <p>El método <code>filter</code> crea un nuevo arreglo con todos los elementos que cumplan la condición implementada por la función proporcionada. Aquí hay un ejemplo:</p>
+    <img src="Imagenes/fulter.png" alt="">
+    <p>Filter crea un nuevo arreglo con todos los elementos que pasan la prueba implementada por la función proporcionada</p>
+    <div id="resultado-filter"></div>
+    <button onclick="mostrarFilter()">Mostrar resultado de filter</button>
+    
+    <h1>Reduce</h1>
+    <p> Reduce ejecuta una función reductora sobre cada elemento de un array, devolviendo como resultado un único valor. Aquí hay un ejemplo:</p>
+    <img src="Imagenes/Reduce.png" alt="">
+    <p> En .reduce(), el primer parámetro de la función de callback es siempre el acumulador, que mantiene el valor total hasta ese punto, mientras que el segundo parámetro es el valor actual del arreglo en la iteración. Lo que haces con esos valores depende de la operación que quieras realizar.</p>
+    <div id="resultado-reduce"></div>
+    <button onclick="mostrarReduce()">Mostrar resultado de reduce</button>
+
+     <h1>Ejercicio: Encontrar el Mayor Número</h1>
+    <p> Utiliza el método <code>reduce</code> para encontrar el mayor número en el arreglo <code>numeros</code>:</p>
+    <img src="Imagenes/Mayor.png" alt="">
+    <p> Esta función utiliza el método reduce para comparar cada número con el máximo actual, devolviendo el mayor encontrado</p>
+    <div id="resultado-Mayor"></div>
+    <button onclick="mostrarMayor()">Mostrar resultado de mayor</button>
+
+    <h1>Creación y Acceso a Propiedades de Objetos</h1>
+    <p> Los objetos en JavaScript son estructuras que permiten almacenar datos en pares clave-valor. Veamos un ejemplo:</p>
+    <img src="Imagenes/Objetos.png" alt="">
+    <p> En este ejemplo, estamos creando un objeto que representa a una persona:</p>
+    <div id="resultado-objetos"></div>
+    <button onclick="mostrarObjetos()">Mostrar resultado de objetos</button>
+
+    <h1>Iteración sobre Propiedades de Objetos</h1>
+    <p> Para recorrer las propiedades de un objeto, podemos usar un bucle for...in:</p>
+    <img src="Imagenes/iteracion.png" alt="">
+    <p>  Este método nos permite acceder tanto a las claves como a los valores de cada propiedad del objeto.</p>
+    <div id="resultado-iteracion"></div>
+    <button onclick="mostrarIteracion()">Mostrar resultado de la oteracion</button></h1>
+
+    <h1>Ejercicio: Contar Propiedades de un Objeto</h1>
+    <h2>Descripción del Problema</h2>
+    <p> Escribir una función que tome un objeto y devuelva el número de propiedades que tiene</p>
+    <img src="Imagenes/contar propiedades.png" alt="">
+    <p> Esta función utiliza un bucle for...in para contar las propiedades del objeto.</p>
+    <div id="resultado-Propiedades"></div>
+    <button onclick="ContarPropiedades()">Mostrar resultado de la iteración</button></h1>
+
+    <h1>Transformación de Arreglos de Objetos</h1>
+    <p> Un ejercicio común es transformar un arreglo de objetos para extraer una propiedad específica:</p>
+    <img src="Imagenes/transformacion.png" alt="">
+    <p> Esta función utiliza el método map para crear un nuevo arreglo con solo los nombres de los usuarios.</p>
+    <div id="resultado-transformacion"></div>
+    <button onclick="mostrarTransformacion()">Mostrar resultado de la transformación</button></h1>
+
+    <h1>Filtrado de Arreglos de Objetos</h1>
+    <p> Otro ejercicio útil es filtrar un arreglo de objetos basado en una condición:</p>
+    <img src="Imagenes/filtrado.png" alt="">
+    <p> Esta función utiliza el método filter para crear un nuevo arreglo con solo los usuarios que cumplen con la condición.</p>
+    <div id="resultado-filtrado"></div>
+    <button onclick="mostrarFiltrado()">Mostrar resultado de la filtración</button></h1>
+
+    <h1> Agrupación por Propiedad</h1>
+    <h2> Definición del Problema</h2>
+    <p> Escribir una función que tome un arreglo de objetos y agrupe los objetos por una propiedad específica:</p>
+    <h2> Implementación de la Solución</h2>
+    <img src="Imagenes/implementacion.png" alt="">
+    <h2>Ejemplo de Uso</h2>
+    <img src="Imagenes/ejemplo de usp.png" alt="">
+    <p> Esta función utiliza el método filter para crear un nuevo arreglo con solo los usuarios que cumplen con la condición.</p>
+    <div id="resultado-filtrado"></div>
+    <button onclick="mostrarFiltrado()">Mostrar resultado de la filtración</button></h1>
+
+    
+
+    <script>
+        const frutas = ["manzana", "banana", "naranja", "uva"];
+        const numeros = [1, 2, 3, 4, 5];
+
+        // Mostrar frutas en lista
+        const lista = document.getElementById("lista-frutas");
+        frutas.forEach(fruta => {
+            const li = document.createElement("li");
+            li.textContent = fruta;
+            lista.appendChild(li);
+        });
+
+        function mostrarFrutas() {
+            document.getElementById("resultado-frutas").textContent = JSON.stringify(frutas);
+        }
+
+        function mostrarMap() {
+            // Ejemplo de map: duplicar números
+            const numerosDuplicados = numeros.map(num => num * 2);
+            document.getElementById("resultado-map").textContent = "numeros.map(num => num * 2): " + JSON.stringify(numerosDuplicados);
+        }
+
+        function mostrarFilter() {
+            // Ejemplo de filter: números mayores a 2
+            const numerosFiltrados = numeros.filter(num => num > 2);
+            document.getElementById("resultado-filter").textContent = "numeros.filter(num => num > 2): " + JSON.stringify(numerosFiltrados);
+        }
+        function mostrarReduce() {
+             const suma = numeros.reduce((total, num1) => total + num1, 0);console.log(suma); 
+            document.getElementById("resultado-reduce").textContent = "numeros.reduce((total, num1) => total + num1, 0): " + suma;
+        }
+        function encontrarMayor(arr) {
+            return arr.reduce((max, num) => (num > max ? num : max), arr[0]);
+        }
+        const numeros2 = [10, 5, 8, 20, 15];
+
+        function mostrarMayor() {
+            const mayor = encontrarMayor(numeros2);
+            document.getElementById("resultado-Mayor").textContent = "El mayor número es: " + mayor;
+        }
+        {
+            function mostrarObjetos() {
+                const persona = {nombre: "Juan", edad: 30, ciudad: "Madrid"};
+                document.getElementById("resultado-objetos").textContent =`Nombre: ${persona.nombre}, Edad: ${persona.edad}, Ciudad: ${persona.ciudad}`;
+            }
+        }
+        function mostrarIteracion() {
+            const libro = {titulo:"El principito", autor:"Antoine de Saint-Exupéry", año: 1943};
+            let resultado = "";
+            for (let propiedad in libro) {
+            resultado += `${propiedad}: ${libro[propiedad]}<br>`;
+            }
+            document.getElementById("resultado-iteracion").innerHTML = resultado;
+        }
+        function contarPropiedades(obj) {    
+            return Object.keys(obj).length;
+        }
+
+        function ContarPropiedades() {
+            const coche = {marca: "Toyota", modelo: "Corolla", año: 2020};
+            const cantidad = contarPropiedades(coche);
+            document.getElementById("resultado-Propiedades").textContent = "Número de propiedades: " + cantidad;
+        }
+        function mostrarTransformacion() {
+            const usuarios = [
+                { nombre: "Ana", edad: 25 },
+                { nombre: "Luis", edad: 30 },
+                { nombre: "María", edad: 28 }
+            ];
+            function obtenerNombres(arr) {
+                return arr.map(usuario => usuario.nombre);
+            }
+            const nombres = obtenerNombres(usuarios);
+            document.getElementById("resultado-transformacion").textContent = "Nombres: " + nombres.join(", ");
+        }
+        function filtrarUsuarios(arr) {
+            return arr.filter(usuario => usuario.edad > 27);
+        }
+
+        function mostrarFiltrado() {
+            const usuarios = [
+            { nombre: "Ana", edad: 25 },
+            { nombre: "Luis", edad: 30 },
+            { nombre: "María", edad: 28 }
+            ];
+            const filtrados = filtrarUsuarios(usuarios);
+            document.getElementById("resultado-filtrado").textContent = "Usuarios con edad > 27: " + JSON.stringify(filtrados);
+        }
+    </script>
+</body>
+</html>

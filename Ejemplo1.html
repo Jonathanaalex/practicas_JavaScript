@@ -1,177 +1,385 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso de JavaScript - Ejemplos</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html, body {
-            height: 100%;
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #7c3aed;
+            --accent-color: #a78bfa;
+            --text-color: #1f2937;
+            --light-text: #6b7280;
+            --background: #f9fafb;
+            --card-bg: #ffffff;
+            --header-height: 70px;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+        
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f4f6fa;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             min-height: 100vh;
-            width: 100vw;
-            box-sizing: border-box;
+            color: var(--text-color);
+            padding: 20px;
         }
+        
         .container {
-            width: 100vw;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px 0;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-        }
-        .card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            margin-bottom: 32px;
-            padding: 24px;
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            width: 95vw;
             max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
-        .card img {
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 8px 16px;
             border-radius: 8px;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-            max-width: 300px;
-            width: 100%;
-            height: auto;
+            background: rgba(79, 70, 229, 0.1);
+            transition: all 0.3s ease;
         }
+        
+        .back-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
         .card-content {
             flex: 1;
         }
-        h1, h3 {
-            margin-top: 0;
-            color: #2d3a4b;
+        
+        .card-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
         }
-        p {
-            color: #4a5568;
+        
+        .card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
+        
+        .card p {
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .demo-area {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
         button {
-            background: #2563eb;
-            color: #fff;
+            background: var(--primary-color);
+            color: white;
             border: none;
-            border-radius: 6px;
-            padding: 8px 18px;
-            margin-right: 8px;
+            border-radius: 8px;
+            padding: 10px 20px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        
         button:hover {
-            background: #1e40af;
+            background: var(--secondary-color);
+            transform: translateY(-2px);
         }
+        
+        .card-image {
+            flex: 0 0 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         .highlight {
-            background-color: yellow;
+            background-color: #fef3c7;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
-        @media (max-width: 700px) {
-            .container {
-                padding: 10px 0;
-            }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
             .card {
                 flex-direction: column;
-                align-items: stretch;
-                width: 98vw;
-                padding: 12px;
             }
-            .card img {
-                max-width: 100%;
+            
+            .card-image {
+                flex: 1;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .card-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-    <a href="index.html">Volver a la Página Principal</a>
+        <div class="header">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Volver a la Página Principal
+            </a>
+            <h2>Ejemplos Prácticos de JavaScript</h2>
+        </div>
+        
+        <h1 class="page-title">Manipulación del DOM con JavaScript</h1>
 
         <!-- Ejemplo 1 -->
         <div class="card">
+            <div class="card-number">1</div>
             <div class="card-content">
-                <h1>Ejemplo 1: Selección de Elementos del DOM</h1>
-                <p>En este ejemplo, seleccionaremos elementos del DOM usando diferentes métodos.</p>
-                <div id="myDiv" class="myClass">Hello, World!</div>
-                <button id="changeText">Change Text</button>
+                <h1>Selección de Elementos del DOM</h1>
+                <p>En este ejemplo, seleccionaremos elementos del DOM usando diferentes métodos como <span class="highlight">getElementById</span>, <span class="highlight">querySelector</span> y <span class="highlight">querySelectorAll</span>.</p>
+                
+                <div class="demo-area">
+                    <div id="myDiv" class="myClass">¡Hola Mundo!</div>
+                </div>
+                
+                <div class="button-group">
+                    <button id="changeText">
+                        <i class="fas fa-pen"></i>
+                        Cambiar Texto
+                    </button>
+                </div>
             </div>
-            <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 1">
+            <div class="card-image">
+                <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 1">
+            </div>
         </div>
 
         <!-- Ejemplo 2 -->
         <div class="card">
+            <div class="card-number">2</div>
             <div class="card-content">
-                <h1>Ejemplo 2: Manipulación de Contenido y Estilos</h1>
-                <p>Aquí cambiaremos el texto y los estilos de un elemento del DOM.</p>
-                <div id="myDiv1">Hello, World!</div>
-                <button id="changeText1">Change Text</button>
-                <button id="changeStyle1">Change Style</button>
+                <h1>Manipulación de Contenido y Estilos</h1>
+                <p>Aquí cambiaremos el texto y los estilos de un elemento del DOM utilizando JavaScript para modificar propiedades como <span class="highlight">textContent</span>, <span class="highlight">style.color</span> y <span class="highlight">style.fontSize</span>.</p>
+                
+                <div class="demo-area">
+                    <div id="myDiv1">¡Hola Mundo!</div>
+                </div>
+                
+                <div class="button-group">
+                    <button id="changeText1">
+                        <i class="fas fa-pen"></i>
+                        Cambiar Texto
+                    </button>
+                    <button id="changeStyle1">
+                        <i class="fas fa-paint-brush"></i>
+                        Cambiar Estilo
+                    </button>
+                </div>
             </div>
-            <img src="Imagenes/Captura de pantalla 2025-08-28 094120.png" alt="Ejemplo 2">
+            <div class="card-image">
+                <img src="Imagenes/Captura de pantalla 2025-08-28 094120.png" alt="Ejemplo 2">
+            </div>
         </div>
 
         <!-- Ejemplo 3 -->
         <div class="card">
+            <div class="card-number">3</div>
             <div class="card-content">
-                <h1>Ejemplo 3: Eventos del DOM</h1>
-                <p>En este ejemplo, manejaremos eventos del DOM para interactuar con los elementos de la página.</p>
-                <div id="myDiv2" style="padding: 10px; border: 1px solid #ccc; width: fit-content; cursor: pointer;">Click me!</div>
+                <h1>Eventos del DOM</h1>
+                <p>En este ejemplo, manejaremos eventos del DOM como <span class="highlight">click</span>, <span class="highlight">mouseover</span> y <span class="highlight">mouseout</span> para interactuar con los elementos de la página.</p>
+                
+                <div class="demo-area">
+                    <div id="myDiv2" style="padding: 15px; border: 2px dashed #c4b5fd; width: fit-content; cursor: pointer; border-radius: 8px;">
+                        <i class="fas fa-mouse-pointer"></i> ¡Haz clic o pasa el mouse sobre mí!
+                    </div>
+                </div>
             </div>
-            <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 3">
+            <div class="card-image">
+                <img src="Imagenes/Captura de pantalla 2025-09-02 091056.png" alt="Ejemplo 3">
+            </div>
         </div>
 
         <!-- Ejemplo 4 -->
         <div class="card">
+            <div class="card-number">4</div>
             <div class="card-content">
-                <h1>Ejemplo 4: Crear una Página HTML Simple y Manipular el DOM con JavaScript</h1>
-                <p>Crea una página HTML con varios elementos y utiliza JavaScript para realizar diversas manipulaciones.</p>
-                <h2 id="title">My Web Page</h2>
-                <p class="text">This is a paragraph.</p>
-                <p class="text">This is another paragraph.</p>
-                <button id="changeContent">Change Content</button>
-                <button id="highlightText">Highlight Text</button>
+                <h1>Crear y Manipular Elementos del DOM</h1>
+                <p>Crea una página HTML con varios elementos y utiliza JavaScript para realizar diversas manipulaciones como cambiar contenido, alternar clases y modificar estilos.</p>
+                
+                <div class="demo-area">
+                    <h2 id="title">Mi Página Web</h2>
+                    <p class="text">Este es un párrafo de ejemplo.</p>
+                    <p class="text">Este es otro párrafo de ejemplo.</p>
+                </div>
+                
+                <div class="button-group">
+                    <button id="changeContent">
+                        <i class="fas fa-edit"></i>
+                        Cambiar Contenido
+                    </button>
+                    <button id="highlightText">
+                        <i class="fas fa-highlighter"></i>
+                        Resaltar Texto
+                    </button>
+                </div>
             </div>
-            <img src="Imagenes/Captura de pantalla 2025-08-28 091629.png" alt="Ejemplo 4">
+            <div class="card-image">
+                <img src="Imagenes/Captura de pantalla 2025-09-02 092143.png" alt="Ejemplo 4">
+            </div>
         </div>
+    </div>
 
+    <div class="footer">
+        <p>Curso de JavaScript - Ejemplos Prácticos &copy; 2023</p>
     </div>
 
     <script>
         // Ejemplo 1
         const myDiv = document.getElementById('myDiv');
         document.getElementById('changeText').addEventListener('click', () => {
-            myDiv.textContent = '¡Texto cambiado!';
+            myDiv.textContent = '¡Texto cambiado con éxito!';
+            myDiv.style.color = '#4f46e5';
+            myDiv.style.fontWeight = 'bold';
         });
 
         // Ejemplo 2
         const myDiv1 = document.getElementById('myDiv1');
         document.getElementById('changeText1').addEventListener('click', () => {
-            myDiv1.textContent = 'Text Changed!';
+            myDiv1.textContent = '¡Texto modificado!';
         });
         document.getElementById('changeStyle1').addEventListener('click', () => {
-            myDiv1.style.color = 'red';
+            myDiv1.style.color = '#7c3aed';
             myDiv1.style.fontSize = '24px';
+            myDiv1.style.fontWeight = 'bold';
         });
 
         // Ejemplo 3
         const myDiv2 = document.getElementById('myDiv2');
         myDiv2.addEventListener('click', () => {
-            alert('Div clicked!');
-            myDiv2.style.backgroundColor = 'lightblue';
+            alert('¡Elemento clickeado!');
+            myDiv2.style.backgroundColor = '#ddd6fe';
+            myDiv2.style.borderColor = '#7c3aed';
         });
         myDiv2.addEventListener('mouseover', () => {
-            myDiv2.style.backgroundColor = 'yellow';
+            myDiv2.style.backgroundColor = '#f5f3ff';
         });
         myDiv2.addEventListener('mouseout', () => {
             myDiv2.style.backgroundColor = '';
@@ -179,7 +387,11 @@
 
         // Ejemplo 4
         document.getElementById('changeContent').addEventListener('click', () => {
-            document.getElementById('title').textContent = 'Content Changed!';
+            document.getElementById('title').textContent = '¡Contenido Modificado!';
+            const paragraphs = document.querySelectorAll('.text');
+            paragraphs.forEach((p, index) => {
+                p.textContent = `Este es el párrafo número ${index + 1} con nuevo contenido.`;
+            });
         });
         document.getElementById('highlightText').addEventListener('click', () => {
             const paragraphs = document.querySelectorAll('.text');

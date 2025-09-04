@@ -1,104 +1,411 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manejo de Arreglos y objetos en JavaScript</title>
+    <title>Manejo de Arreglos y Objetos en JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #10b981;
+            --secondary-color: #059669;
+            --accent-color: #34d399;
+            --text-color: #1f2937;
+            --light-text: #6b7280;
+            --background: #f9fafb;
+            --card-bg: #ffffff;
+            --header-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h1 i {
+            color: var(--secondary-color);
+        }
+        
+        .card p {
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .demo-area {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .code-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-area {
+            background: #ecfdf5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid var(--accent-color);
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Manejo de Arreglos y Objetos en JavaScript</h1>
-        <nav class="menu">
-            <a href="DOM.html">Ir a DOM</a>
-            <a href="/EjerciciosFunciones.html">Ir a Ejercicios de Funciones</a>
-            <a href="/ManejoAreglos.html">Ir a manejo de arreglos</a>
-        </nav>
+        <div class="header">
+            <h1 class="page-title">Manejo de Arreglos y Objetos en JavaScript</h1>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    Ir a DOM
+                </a>
+                <a href="EjerciciosFunciones.html" class="nav-link">
+                    <i class="fas fa-functions"></i>
+                    Ir a Ejercicios de Funciones
+                </a>
+                <a href="ManejoAreglos.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Ir a manejo de arreglos
+                </a>
+            </nav>
+        </div>
+
+        <!-- Ejemplo de Iteración -->
+        <div class="card">
+            <h1><i class="fas fa-list"></i> Ejemplo de Manejo de Arreglos</h1>
+            <p>Una técnica fundamental en el manejo de arreglos es la iteración. Veamos un ejemplo usando un bucle for:</p>
+            <img src="Imagenes/Captura de pantalla 2025-09-03 092415.png" alt="Ejemplo de iteración" class="code-image">
+            <div class="demo-area">
+                <p>Lista de frutas:</p>
+                <ul id="lista-frutas"></ul>
+            </div>
+            <p>Resultado de la variable <strong>frutas</strong>:</p>
+            <div class="result-area" id="resultado-frutas"></div>
+            <div class="button-group">
+                <button onclick="mostrarFrutas()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar frutas
+                </button>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="card">
+            <h1><i class="fas fa-map"></i> Map</h1>
+            <p>El método <code>map</code> crea un nuevo arreglo con los resultados de la llamada a una función proporcionada aplicada a cada elemento del arreglo original. Aquí hay un ejemplo:</p>
+            <img src="Imagenes/Mayor.png" alt="Ejemplo de map" class="code-image">
+            <p>En este ejemplo, estamos utilizando <code>map</code> para crear un nuevo arreglo que contiene la longitud de cada fruta:</p>
+            <div class="demo-area">
+                <ul id="lista-longitudes"></ul>
+            </div>
+            <div class="result-area" id="resultado-map"></div>
+            <div class="button-group">
+                <button onclick="mostrarMap()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de map
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="card">
+            <h1><i class="fas fa-filter"></i> Filter</h1>
+            <p>El método <code>filter</code> crea un nuevo arreglo con todos los elementos que cumplan la condición implementada por la función proporcionada. Aquí hay un ejemplo:</p>
+            <img src="Imagenes/fulter.png" alt="Ejemplo de filter" class="code-image">
+            <p>Filter crea un nuevo arreglo con todos los elementos que pasan la prueba implementada por la función proporcionada</p>
+            <div class="result-area" id="resultado-filter"></div>
+            <div class="button-group">
+                <button onclick="mostrarFilter()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de filter
+                </button>
+            </div>
+        </div>
+        
+        <!-- Reduce -->
+        <div class="card">
+            <h1><i class="fas fa-compress"></i> Reduce</h1>
+            <p> Reduce ejecuta una función reductora sobre cada elemento de un array, devolviendo como resultado un único valor. Aquí hay un ejemplo:</p>
+            <img src="Imagenes/Reduce.png" alt="Ejemplo de reduce" class="code-image">
+            <p> En .reduce(), el primer parámetro de la función de callback es siempre el acumulador, que mantiene el valor total hasta ese punto, mientras que el segundo parámetro es el valor actual del arreglo en la iteración. Lo que haces con esos valores depende de la operación que quieras realizar.</p>
+            <div class="result-area" id="resultado-reduce"></div>
+            <div class="button-group">
+                <button onclick="mostrarReduce()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de reduce
+                </button>
+            </div>
+        </div>
+
+        <!-- Mayor Número -->
+        <div class="card">
+            <h1><i class="fas fa-arrow-up"></i> Ejercicio: Encontrar el Mayor Número</h1>
+            <p> Utiliza el método <code>reduce</code> para encontrar el mayor número en el arreglo <code>numeros</code>:</p>
+            <img src="Imagenes/Mayor.png" alt="Ejemplo de encontrar mayor número" class="code-image">
+            <p> Esta función utiliza el método reduce para comparar cada número con el máximo actual, devolviendo el mayor encontrado</p>
+            <div class="result-area" id="resultado-Mayor"></div>
+            <div class="button-group">
+                <button onclick="mostrarMayor()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de mayor
+                </button>
+            </div>
+        </div>
+
+        <!-- Objetos -->
+        <div class="card">
+            <h1><i class="fas fa-cube"></i> Creación y Acceso a Propiedades de Objetos</h1>
+            <p> Los objetos en JavaScript son estructuras que permiten almacenar datos en pares clave-valor. Veamos un ejemplo:</p>
+            <img src="Imagenes/Objetos.png" alt="Ejemplo de objetos" class="code-image">
+            <p> En este ejemplo, estamos creando un objeto que representa a una persona:</p>
+            <div class="result-area" id="resultado-objetos"></div>
+            <div class="button-group">
+                <button onclick="mostrarObjetos()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de objetos
+                </button>
+            </div>
+        </div>
+
+        <!-- Iteración sobre Objetos -->
+        <div class="card">
+            <h1><i class="fas fa-sync"></i> Iteración sobre Propiedades de Objetos</h1>
+            <p> Para recorrer las propiedades de un objeto, podemos usar un bucle for...in:</p>
+            <img src="Imagenes/iteracion.png" alt="Ejemplo de iteración sobre objetos" class="code-image">
+            <p>  Este método nos permite acceder tanto a las claves como a los valores de cada propiedad del objeto.</p>
+            <div class="result-area" id="resultado-iteracion"></div>
+            <div class="button-group">
+                <button onclick="mostrarIteracion()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de la iteración
+                </button>
+            </div>
+        </div>
+
+        <!-- Contar Propiedades -->
+        <div class="card">
+            <h1><i class="fas fa-calculator"></i> Ejercicio: Contar Propiedades de un Objeto</h1>
+            <h2>Descripción del Problema</h2>
+            <p> Escribir una función que tome un objeto y devuelva el número de propiedades que tiene</p>
+            <img src="Imagenes/contar propiedades.png" alt="Ejemplo de contar propiedades" class="code-image">
+            <p> Esta función utiliza un bucle for...in para contar las propiedades del objeto.</p>
+            <div class="result-area" id="resultado-Propiedades"></div>
+            <div class="button-group">
+                <button onclick="ContarPropiedades()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de la iteración
+                </button>
+            </div>
+        </div>
+
+        <!-- Transformación -->
+        <div class="card">
+            <h1><i class="fas fa-exchange-alt"></i> Transformación de Arreglos de Objetos</h1>
+            <p> Un ejercicio común es transformar un arreglo de objetos para extraer una propiedad específica:</p>
+            <img src="Imagenes/transformacion.png" alt="Ejemplo de transformación" class="code-image">
+            <p> Esta función utiliza el método map para crear un nuevo arreglo con solo los nombres de los usuarios.</p>
+            <div class="result-area" id="resultado-transformacion"></div>
+            <div class="button-group">
+                <button onclick="mostrarTransformacion()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de la transformación
+                </button>
+            </div>
+        </div>
+
+        <!-- Filtrado -->
+        <div class="card">
+            <h1><i class="fas fa-filter"></i> Filtrado de Arreglos de Objetos</h1>
+            <p> Otro ejercicio útil es filtrar un arreglo de objetos basado en una condición:</p>
+            <img src="Imagenes/filtrado.png" alt="Ejemplo de filtrado" class="code-image">
+            <p> Esta función utiliza el método filter para crear un nuevo arreglo con solo los usuarios que cumplen con la condición.</p>
+            <div class="result-area" id="resultado-filtrado"></div>
+            <div class="button-group">
+                <button onclick="mostrarFiltrado()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de la filtración
+                </button>
+            </div>
+        </div>
+
+        <!-- Agrupación -->
+        <div class="card">
+            <h1><i class="fas fa-object-group"></i> Agrupación por Propiedad</h1>
+            <h2> Definición del Problema</h2>
+            <p> Escribir una función que tome un arreglo de objetos y agrupe los objetos por una propiedad específica:</p>
+            <h2> Implementación de la Solución</h2>
+            <img src="Imagenes/implementacion.png" alt="Implementación de agrupación" class="code-image">
+            <h2>Ejemplo de Uso</h2>
+            <img src="Imagenes/ejemplo de usp.png" alt="Ejemplo de uso de agrupación" class="code-image">
+            <p> En este ejemplo, agrupamos un arreglo de objetos por la propiedad "categoria":</p>
+            <div class="result-area" id="resultado-implementacion"></div>
+            <div class="button-group">
+                <button onclick="mostrarimplementacion()">
+                    <i class="fas fa-eye"></i>
+                    Mostrar resultado de la filtración
+                </button>
+            </div>
+        </div>
     </div>
-    <h1>Ejemplo de Manejo de Arreglos</h1>
-    <p>Una técnica fundamental en el manejo de arreglos es la iteración. Veamos un ejemplo usando un bucle for:</p>
-    <ul id="lista-frutas"></ul>
-    <img src="Imagenes/Captura de pantalla 2025-09-03 092415.png" alt="">
-    <p>Resultado de la variable <strong>frutas</strong>:</p>
-    <div id="resultado-frutas"></div>
-    <button onclick="mostrarFrutas()">Mostrar frutas</button>
 
-    <h1>Map</h1>
-    <p>El método <code>map</code> crea un nuevo arreglo con los resultados de la llamada a una función proporcionada aplicada a cada elemento del arreglo original. Aquí hay un ejemplo:</p>
-    <img src="Imagenes/Mayor.png" alt="">
-    <p>En este ejemplo, estamos utilizando <code>map</code> para crear un nuevo arreglo que contiene la longitud de cada fruta:</p>
-    <ul id="lista-longitudes"></ul>
-    <div id="resultado-map"></div>
-    <button onclick="mostrarMap()">Mostrar resultado de map</button>
-
-    <h1>Filter</h1>
-    <p>El método <code>filter</code> crea un nuevo arreglo con todos los elementos que cumplan la condición implementada por la función proporcionada. Aquí hay un ejemplo:</p>
-    <img src="Imagenes/fulter.png" alt="">
-    <p>Filter crea un nuevo arreglo con todos los elementos que pasan la prueba implementada por la función proporcionada</p>
-    <div id="resultado-filter"></div>
-    <button onclick="mostrarFilter()">Mostrar resultado de filter</button>
-    
-    <h1>Reduce</h1>
-    <p> Reduce ejecuta una función reductora sobre cada elemento de un array, devolviendo como resultado un único valor. Aquí hay un ejemplo:</p>
-    <img src="Imagenes/Reduce.png" alt="">
-    <p> En .reduce(), el primer parámetro de la función de callback es siempre el acumulador, que mantiene el valor total hasta ese punto, mientras que el segundo parámetro es el valor actual del arreglo en la iteración. Lo que haces con esos valores depende de la operación que quieras realizar.</p>
-    <div id="resultado-reduce"></div>
-    <button onclick="mostrarReduce()">Mostrar resultado de reduce</button>
-
-     <h1>Ejercicio: Encontrar el Mayor Número</h1>
-    <p> Utiliza el método <code>reduce</code> para encontrar el mayor número en el arreglo <code>numeros</code>:</p>
-    <img src="Imagenes/Mayor.png" alt="">
-    <p> Esta función utiliza el método reduce para comparar cada número con el máximo actual, devolviendo el mayor encontrado</p>
-    <div id="resultado-Mayor"></div>
-    <button onclick="mostrarMayor()">Mostrar resultado de mayor</button>
-
-    <h1>Creación y Acceso a Propiedades de Objetos</h1>
-    <p> Los objetos en JavaScript son estructuras que permiten almacenar datos en pares clave-valor. Veamos un ejemplo:</p>
-    <img src="Imagenes/Objetos.png" alt="">
-    <p> En este ejemplo, estamos creando un objeto que representa a una persona:</p>
-    <div id="resultado-objetos"></div>
-    <button onclick="mostrarObjetos()">Mostrar resultado de objetos</button>
-
-    <h1>Iteración sobre Propiedades de Objetos</h1>
-    <p> Para recorrer las propiedades de un objeto, podemos usar un bucle for...in:</p>
-    <img src="Imagenes/iteracion.png" alt="">
-    <p>  Este método nos permite acceder tanto a las claves como a los valores de cada propiedad del objeto.</p>
-    <div id="resultado-iteracion"></div>
-    <button onclick="mostrarIteracion()">Mostrar resultado de la oteracion</button></h1>
-
-    <h1>Ejercicio: Contar Propiedades de un Objeto</h1>
-    <h2>Descripción del Problema</h2>
-    <p> Escribir una función que tome un objeto y devuelva el número de propiedades que tiene</p>
-    <img src="Imagenes/contar propiedades.png" alt="">
-    <p> Esta función utiliza un bucle for...in para contar las propiedades del objeto.</p>
-    <div id="resultado-Propiedades"></div>
-    <button onclick="ContarPropiedades()">Mostrar resultado de la iteración</button></h1>
-
-    <h1>Transformación de Arreglos de Objetos</h1>
-    <p> Un ejercicio común es transformar un arreglo de objetos para extraer una propiedad específica:</p>
-    <img src="Imagenes/transformacion.png" alt="">
-    <p> Esta función utiliza el método map para crear un nuevo arreglo con solo los nombres de los usuarios.</p>
-    <div id="resultado-transformacion"></div>
-    <button onclick="mostrarTransformacion()">Mostrar resultado de la transformación</button></h1>
-
-    <h1>Filtrado de Arreglos de Objetos</h1>
-    <p> Otro ejercicio útil es filtrar un arreglo de objetos basado en una condición:</p>
-    <img src="Imagenes/filtrado.png" alt="">
-    <p> Esta función utiliza el método filter para crear un nuevo arreglo con solo los usuarios que cumplen con la condición.</p>
-    <div id="resultado-filtrado"></div>
-    <button onclick="mostrarFiltrado()">Mostrar resultado de la filtración</button></h1>
-
-    <h1> Agrupación por Propiedad</h1>
-    <h2> Definición del Problema</h2>
-    <p> Escribir una función que tome un arreglo de objetos y agrupe los objetos por una propiedad específica:</p>
-    <h2> Implementación de la Solución</h2>
-    <img src="Imagenes/implementacion.png" alt="">
-    <h2>Ejemplo de Uso</h2>
-    <img src="Imagenes/ejemplo de usp.png" alt="">
-    <p> Esta función utiliza el método filter para crear un nuevo arreglo con solo los usuarios que cumplen con la condición.</p>
-    <div id="resultado-filtrado"></div>
-    <button onclick="mostrarFiltrado()">Mostrar resultado de la filtración</button></h1>
-
-    
+    <div class="footer">
+        <p>Manejo de Arreglos y Objetos en JavaScript &copy; 2023</p>
+    </div>
 
     <script>
         const frutas = ["manzana", "banana", "naranja", "uva"];
@@ -127,25 +434,28 @@
             const numerosFiltrados = numeros.filter(num => num > 2);
             document.getElementById("resultado-filter").textContent = "numeros.filter(num => num > 2): " + JSON.stringify(numerosFiltrados);
         }
+        
         function mostrarReduce() {
-             const suma = numeros.reduce((total, num1) => total + num1, 0);console.log(suma); 
+             const suma = numeros.reduce((total, num1) => total + num1, 0);
             document.getElementById("resultado-reduce").textContent = "numeros.reduce((total, num1) => total + num1, 0): " + suma;
         }
+        
         function encontrarMayor(arr) {
             return arr.reduce((max, num) => (num > max ? num : max), arr[0]);
         }
+        
         const numeros2 = [10, 5, 8, 20, 15];
 
         function mostrarMayor() {
             const mayor = encontrarMayor(numeros2);
             document.getElementById("resultado-Mayor").textContent = "El mayor número es: " + mayor;
         }
-        {
-            function mostrarObjetos() {
-                const persona = {nombre: "Juan", edad: 30, ciudad: "Madrid"};
-                document.getElementById("resultado-objetos").textContent =`Nombre: ${persona.nombre}, Edad: ${persona.edad}, Ciudad: ${persona.ciudad}`;
-            }
+        
+        function mostrarObjetos() {
+            const persona = {nombre: "Juan", edad: 30, ciudad: "Madrid"};
+            document.getElementById("resultado-objetos").textContent =`Nombre: ${persona.nombre}, Edad: ${persona.edad}, Ciudad: ${persona.ciudad}`;
         }
+        
         function mostrarIteracion() {
             const libro = {titulo:"El principito", autor:"Antoine de Saint-Exupéry", año: 1943};
             let resultado = "";
@@ -154,6 +464,7 @@
             }
             document.getElementById("resultado-iteracion").innerHTML = resultado;
         }
+        
         function contarPropiedades(obj) {    
             return Object.keys(obj).length;
         }
@@ -163,6 +474,7 @@
             const cantidad = contarPropiedades(coche);
             document.getElementById("resultado-Propiedades").textContent = "Número de propiedades: " + cantidad;
         }
+        
         function mostrarTransformacion() {
             const usuarios = [
                 { nombre: "Ana", edad: 25 },
@@ -175,6 +487,7 @@
             const nombres = obtenerNombres(usuarios);
             document.getElementById("resultado-transformacion").textContent = "Nombres: " + nombres.join(", ");
         }
+        
         function filtrarUsuarios(arr) {
             return arr.filter(usuario => usuario.edad > 27);
         }
@@ -187,6 +500,32 @@
             ];
             const filtrados = filtrarUsuarios(usuarios);
             document.getElementById("resultado-filtrado").textContent = "Usuarios con edad > 27: " + JSON.stringify(filtrados);
+        }
+        
+        function agruparPorCategoria(arr) {
+            return arr.reduce((acc, producto) => {
+                const cat = producto.categoria;
+                if (!acc[cat]) acc[cat] = [];
+                acc[cat].push(producto);
+                return acc;
+            }, {});
+        }
+
+        function mostrarimplementacion() {
+            const productos = [
+                { nombre: "camiseta", categoria: "ropa" },
+                { nombre: "pantalón", categoria: "ropa" },
+                { nombre: "zapatos", categoria: "calzado" },
+                { nombre: "sandalias", categoria: "calzado" }
+            ];
+            const agrupados = agruparPorCategoria(productos);
+            let resultado = "";
+            for (const categoria in agrupados) {
+                resultado += `<strong>${categoria}:</strong> `;
+                resultado += agrupados[categoria].map(p => p.nombre).join(", ");
+                resultado += "<br>";
+            }
+            document.getElementById("resultado-implementacion").innerHTML = resultado;
         }
     </script>
 </body>

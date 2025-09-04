@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas y Asincronía en JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8b5cf6;
+            --secondary-color: #7c3aed;
+            --accent-color: #a78bfa;
+            --text-color: #1f2937;
+            --light-text: #6b7280;
+            --background: #f9fafb;
+            --card-bg: #ffffff;
+            --header-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h1 i {
+            color: var(--secondary-color);
+        }
+        
+        .card p {
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .demo-area {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .result-area {
+            background: #ecfdf5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid var(--accent-color);
+        }
+        
+        .user-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .user-list li {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .user-email {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .user-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">Promesas y Asincronía en JavaScript</h1>
+            <nav class="nav-menu">
+                <a href="DOM.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    Ir a DOM
+                </a>
+                <a href="EjerciciosFunciones.html" class="nav-link">
+                    <i class="fas fa-functions"></i>
+                    Ir a Ejercicios de Funciones
+                </a>
+                <a href="ManejoAreglos.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Ir a manejo de arreglos
+                </a>
+            </nav>
+        </div>
+
+        <!-- Callbacks -->
+        <div class="card">
+            <h1><i class="fas fa-exchange-alt"></i> Callbacks</h1>
+            <p>Un callback en JavaScript es una función que se pasa como argumento a otra función y se ejecuta después de que se completa la tarea de la función que la recibió. Los callbacks son una parte fundamental de la programación asíncrona en JavaScript.</p>
+            
+            <div class="demo-area">
+                <h3>Ejemplo: Suma con Callback</h3>
+               <img src="Imagenes/callback.png" alt="">
+                <div class="result-area" id="resultado-callback"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarCallback()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Callback
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promesas -->
+        <div class="card">
+            <h1><i class="fas fa-hourglass-half"></i> Promesas</h1>
+            <p>Una promesa en JavaScript es un objeto que representa la eventual finalización (o falla) de una operación asíncrona y su valor resultante. Las promesas son una forma de manejar operaciones asíncronas de manera más legible y manejable que los callbacks.</p>
+            
+            <div class="demo-area">
+                <h3>Ejemplo: Obtener Posts de una API</h3>
+                <img src="Imagenes/Nombrey edad.png" alt="">
+                <div class="result-area">
+                    <h4>Posts obtenidos:</h4>
+                    <ul id="posts-list"></ul>
+                </div>
+                <div class="button-group">
+                    <button onclick="obtenerDatos()">
+                        <i class="fas fa-download"></i>
+                        Obtener datos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Async/Await -->
+        <div class="card">
+            <h1><i class="fas fa-clock"></i> Async/Await</h1>
+            <p>async y await son palabras clave que permiten escribir código asincrónico de manera más clara y estructurada. async declara una función asincrónica y await se usa dentro de esta para esperar el resultado de una promesa.</p>
+            
+            <div class="demo-area">
+                <h3>Ejemplo: Obtener Posts con Async/Await</h3>
+                <div class="code-block">
+
+                </div>
+                <div class="result-area">
+                    <h4>Ejemplo 2 promesas:</h4>
+                    <ul id="posts-list-async"></ul>
+                    <img src="Imagenes/promesa.png" alt="">
+                </div>
+                <div class="button-group">
+                    <button onclick="obtenerPostsConAsyncAwait()">
+                        <i class="fas fa-download"></i>
+                        Obtener Posts (Async/Await)
+                    </button>
+                </div>
+
+                <div class="result-area">
+                    <h4>Posts obtenidos con Async/Await:</h4>
+                    <ul id="posts-list-async"></ul>
+                    <img src="Imagenes/Estructura promesa.png" alt="">
+                </div>
+                <div class="button-group">
+                    <button onclick="obtenerPosts()">
+                        <i class="fas fa-download"></i>
+                        Obtener Posts (Async/Await)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio: Mostrar Usuarios -->
+        <div class="card">
+            <h1><i class="fas fa-users"></i> Ejercicio: Mostrar Usuarios</h1>
+            <p>El objetivo de este ejercicio es crear una página web que obtenga una lista de usuarios desde una API y muestre sus nombres y correos electrónicos en una lista.</p>
+            
+            <div class="demo-area">
+                <h3>Obteniendo usuarios de JSONPlaceholder</h3>
+                <div class="code-block">
+
+                </div>
+                <div class="result-area">
+                    <h4>Lista de Usuarios:</h4>
+                    <ul id="users-list" class="user-list"></ul>
+                </div>
+                <div class="button-group">
+                    <button onclick="obtenerUsuarios()">
+                        <i class="fas fa-user-friends"></i>
+                        Obtener Usuarios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Promesas y Asincronía en JavaScript &copy; 2023</p>
+    </div>
+
+    <script>
+        // Callbacks
+        function ejecutarCallback() {
+            function sumar(a, b, callback) {
+                const resultado = a + b;
+                callback(resultado);
+            }
+
+            function mostrarResultado(resultado) {
+                document.getElementById("resultado-callback").textContent = "La suma es: " + resultado;
+            }
+
+            sumar(5, 10, mostrarResultado);
+        }
+
+        // Definimos una función que simula una operación asíncrona
+    function obtenerDatos(callback) {
+        setTimeout(() => {
+            const datos = { nombre: "Juan", edad: 30 };
+            // Llamamos al callback con los datos obtenidos
+            callback(datos);
+        }, 2000); // Simulamos un retraso de 2 segundos
+    }
+
+    // Definimos un callback que maneja los datos
+    function mostrarDatos(datos) {
+        // En vez de document.write, usamos un elemento de la página
+        const postsList = document.getElementById('posts-list');
+        postsList.innerHTML = `<li>Nombre: ${datos.nombre}, Edad: ${datos.edad}</li>`;
+    }
+
+    // Llamamos a la función obtenerDatos y pasamos mostrarDatos como callback
+    obtenerDatos(mostrarDatos);
+
+        // Async/Await
+async function obtenerPostsConAsyncAwait() {
+    // Crear una nueva promesa
+    const miPromesa = new Promise((resolve, reject) => {
+        // Simular una operación asíncrona (por ejemplo, una solicitud de red)
+        const exito = true; // Cambia a false para simular un error
+
+        if (exito) {
+            resolve("Operación exitosa!"); // Se resuelve la promesa
+        } else {
+            reject("Ocurrió un error."); // Se rechaza la promesa
+        }
+    });
+
+    // Usar la promesa con async/await
+    try {
+        const resultado = await miPromesa;
+        // Mostrar el resultado en el elemento correspondiente
+        const postsListAsync = document.getElementById('posts-list-async');
+        postsListAsync.innerHTML = `<li>${resultado}</li>`;
+    } catch (error) {
+        const postsListAsync = document.getElementById('posts-list-async');
+        postsListAsync.innerHTML = `<li style="color:red;">${error}</li>`;
+    }
+}
+   
+    function obtenerPosts() {
+    return new Promise((resolve, reject) => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la llamada a la API');
+                }
+                return response.json();
+            })
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+    });
+}
+
+obtenerPosts()
+    .then(posts => {
+        console.log('Posts obtenidos:', posts);
+    })
+    .catch(error => {
+        console.log('Error:', error);
+    });
+
+        // Ejercicio: Mostrar Usuarios
+        async function obtenerUsuarios() {
+            try {
+                let response = await fetch('https://jsonplaceholder.typicode.com/users');
+                if (!response.ok) {
+                    throw new Error('Error al obtener usuarios');
+                }
+                let usuarios = await response.json();
+                const usersUI = document.getElementById('users-list');
+                usersUI.innerHTML = '';
+                usuarios.forEach(user => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="user-info">
+                            <div class="user-name">${user.name}</div>
+                            <div class="user-email">${user.email}</div>
+                        </div>
+                    `;
+                    usersUI.appendChild(li);
+                });
+            } catch (error) {
+                console.log('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

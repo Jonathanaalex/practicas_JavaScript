@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulación del DOM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        h1 {
+            color: #2d3a4b;
+            margin-bottom: 32px;
+            font-size: 1.7rem;
+            text-align: center;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 40px auto 0 auto;
+        }
+        .menu li {
+            width: 100%;
+        }
+        .menu a {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(90deg, #4f8cff 0%, #235390 100%);
+            padding: 14px 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+            text-align: center;
+        }
+        .menu a:hover {
+            background: linear-gradient(90deg, #235390 0%, #4f8cff 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="/index.html">Ir a Index</a></li>
+        <li><a href="Ejemplo 1.html">Selección de Elementos del DOM</a></li>
+        <li><a href="Ejemplo 2.html">Modificación de Elementos del DOM</a></li>
+    </ul>
+    <h1>Manipulación del DOM con JavaScript</h1>
+</body>
+</html>

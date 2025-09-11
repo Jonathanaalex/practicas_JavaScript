@@ -245,9 +245,15 @@
     </style>
 </head>
 <body>
+    
     <div class="container">
         <div class="header">
             <h1 class="page-title">Promesas y Asincronía en JavaScript</h1>
+            <h2> Concepto deasincronía en JavaScript</h2>
+            <p> La asincronía en JavaScript permite ejecutar tareas sin bloquear el hilo principal del
+        programa. Esto es útil cuando necesitas realizar operaciones que pueden llevar tiempo,
+        como acceder a una API o leer archivos.
+        La asincronía se maneja comúnmente con callbacks, promesas y async/await.</p>
             <nav class="nav-menu">
                 <a href="DOM.html" class="nav-link">
                     <i class="fas fa-code"></i>
@@ -306,6 +312,8 @@
         <!-- Async/Await -->
         <div class="card">
             <h1><i class="fas fa-clock"></i> Async/Await</h1>
+            <p>Ejemplo 2 promesas: Tomando datos de una API de prueba de internet.
+                Utilizaremos esta api de prueba: https://jsonplaceholder.typicode.com/post</p>
             <p>async y await son palabras clave que permiten escribir código asincrónico de manera más clara y estructurada. async declara una función asincrónica y await se usa dentro de esta para esperar el resultado de una promesa.</p>
             
             <div class="demo-area">
@@ -360,6 +368,87 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="card">
+            <h1><i class="fas fa-users"></i> Simplificando la promesa</h1>
+            <p>Ahora mostramos los post en una lista dinámica en html, primero agregamos la estructura
+ html donde se cargaran los datos:</p>
+            
+            <div class="demo-area">
+                <h3>Posts obtenidos de la API</h3>
+                <ul id="posts"></ul>
+                <div class="button-group">
+                    <button onclick="obtenerPosts()">
+                        <i class="fas fa-download"></i>
+                        Obtener Posts
+                    </button>
+                   <p> La función fetch se utiliza en JavaScript para realizar solicitudes HTTP a recursos remotos, como APIs.
+ El código HTML y JavaScript muestra una lista de títulos de publicaciones obtenidos de una API
+ externa. Dentro de un encabezado  titulado "Posts" y una lista desordenada  con el
+ identificador posts, se cargan los títulos de las publicaciones.
+ La función obtenerPosts utiliza fetch para recuperar los datos de la API, los convierte a JSON, y
+ luego llama a la función mostrarPosts, que limpia la lista actual y agrega cada título de
+ publicación como un nuevo elemento de lista . Si ocurre algún error en el proceso, se muestra
+ en la consola</p> 
+                </div>
+            </div>
+            <div class="card">
+            <h1><i class="fas fa-users"></i> Usodeasync/await</h1>
+            <p>async y await son palabras clave que permiten escribir código asincrónico de manera más clara y estructurada</p>
+            <li>
+                <p> async:Seusaparadeclarar una función asincrónica.</p>
+                <p>Seusadentrodeunafunción asincrónica para esperar el resultado de una promesa.</p>
+            </li>
+            
+            <div class="demo-area">
+                <h3>Ejemplo async/await</h3>
+                <p>Vamos a escribir una función que simula una llamada a una API usando promesas y async/await</p>
+                <div class="code-block">
+                    <pre>
+async function llamadaApi() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({ mensaje: "¡Datos obtenidos correctamente!", fecha: new Date().toLocaleString() });
+        }, 1500);
+    });
+}
+
+async function llamarApiConAsyncAwait() {
+    try {
+        let datos = await llamadaApi();
+        // Mostrar el resultado en la página
+        const resultDiv = document.getElementById('resultado-async');
+        resultDiv.innerHTML = `<strong>${datos.mensaje}</strong><br>Fecha: ${datos.fecha}`;
+    } catch (error) {
+        const resultDiv = document.getElementById('resultado-async');
+        resultDiv.innerHTML = `<span style="color:red;">Error: ${error}</span>`;
+    }
+}
+                    </pre>
+                </div>
+                <div class="result-area" id="resultado-async">
+                    <!-- Aquí se mostrará el resultado de la llamada -->
+                </div>
+                <div class="button-group">
+                    <button onclick="llamarApiConAsyncAwait();">
+                        <i class="fas fa-user-friends"></i>
+                        llamarApiConAsyncAwait
+                    </button>
+                </div>
+            </div>
+            
+        <div>
+           <h2>Correos de Usuarios</h2>
+           <p>Lista de correos electrónicos de los usuarios obtenidos de la API:</p>
+            <div>
+            <ul id="correos-list">
+                <button onclick="mostrarCorreos();">Mostrar Correos</button>
+            </ul>
+               
+
+            </div>
+            
+        </div>
         </div>
     </div>
 
@@ -444,6 +533,13 @@ async function obtenerPostsConAsyncAwait() {
 obtenerPosts()
     .then(posts => {
         console.log('Posts obtenidos:', posts);
+        const postsUl = document.getElementById('posts');
+        postsUl.innerHTML = ''; // Limpiamos la lista antes de agregar nuevos posts
+        posts.forEach(post => {
+            const li = document.createElement('li');
+            li.textContent = post.title;
+            postsUl.appendChild(li);
+        });
     })
     .catch(error => {
         console.log('Error:', error);
@@ -473,6 +569,75 @@ obtenerPosts()
                 console.log('Error:', error);
             }
         }
+        async function llamarApiConAsyncAwait() {
+            try {
+            let datos = await llamadaApi();
+            console.log(datos);
+            } catch (error) {
+            console.log('Error:', error);
+            }
+        // Función para mostrar los posts en la lista HTML
+        function mostrarPosts(posts) {
+            const postsUl = document.getElementById('posts');
+            postsUl.innerHTML = '';
+            posts.forEach(post => {
+                const li = document.createElement('li');
+                li.textContent = post.title;
+                postsUl.appendChild(li);
+            });
+        }
+
+        // Async/Await para obtener y mostrar los posts en la página
+        async function obtenerPostsConAsyncAwait() {
+            try {
+                let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                if (!response.ok) {
+                    throw new Error('Error en la llamada a la API');
+                }
+                let posts = await response.json();
+                mostrarPosts(posts); // Mostrar los posts en la lista HTML
+            } catch (error) {
+                console.log('Error:', error);
+            }
+        }
+    }
+    const obtenerUsuarios1 = () => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(data => mostrarUsuarios(data))
+        .catch(error => console.log('Error:', error));
+};
+
+// Función para mostrar los usuarios en el HTML
+const mostrarUsuarios = (users) => {
+    const usersUL = document.getElementById('users');
+    usersUL.innerHTML = ''; // Limpiamos la lista antes de agregar nuevos usuarios
+    users.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = user.name;
+        usersUL.appendChild(li);
+    });
+};
+function mostrarCorreos() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(users => {
+            const correosUl = document.getElementById('correos-list');
+            correosUl.innerHTML = '';
+            users.forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = user.email;
+                correosUl.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+// Llama a la función para mostrar los correos
+     
     </script>
+    
 </body>
 </html>

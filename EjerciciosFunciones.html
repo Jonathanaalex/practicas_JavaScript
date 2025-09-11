@@ -5,7 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios de Funciones JavaScript</title>
     <style>
-        /* ... (el CSS se mantiene igual para legibilidad y estilo) ... */
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(106,17,203,0.12);
+            padding: 32px 24px 24px 24px;
+        }
+        header h1 {
+            color: #6a11cb;
+            margin-bottom: 8px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #2575fc;
+            font-size: 1.1em;
+            margin-bottom: 24px;
+        }
+        .exercise {
+            background: #f3f7fd;
+            border-radius: 10px;
+            padding: 18px 20px;
+            border-left: 5px solid #6a11cb;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px rgba(106,17,203,0.06);
+        }
+        .exercise h2 {
+            color: #2575fc;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+        .code-container {
+            display: flex;
+            gap: 24px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+        .code-section {
+            flex: 1;
+        }
+        .code-section h3 {
+            margin-bottom: 8px;
+            color: #6a11cb;
+            font-size: 1em;
+        }
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 14px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 1em;
+            margin: 0;
+        }
+        .tests {
+            background: #e8f4fc;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-top: 18px;
+        }
+        .tests h3 {
+            color: #2575fc;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        .result {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: 'Consolas', monospace;
+            font-size: 1em;
+        }
+        .btn-run {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 1em;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(106,17,203,0.08);
+            transition: background 0.3s;
+        }
+        .btn-run:hover {
+            background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+        }
+        .game-container {
+            background: #e8f4fc;
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin-top: 18px;
+        }
+        .game-container input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        .game-container button {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(106,17,203,0.08);
+            transition: background 0.3s;
+        }
+        .game-container button:hover {
+            background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+        }
+        .game-message {
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #777;
+            font-size: 1em;
+        }
+        @media (max-width: 900px) {
+            .container {
+                padding: 16px 8px;
+            }
+            .code-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.3em;
+            }
+            .exercise h2 {
+                font-size: 1em;
+            }
+            .container {
+                padding: 8px 2px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -40,7 +198,7 @@
         </section>
 
         <!-- Ejercicio 4: Mayor de 2 números -->
-        <section class="exercise" id="exercise4"></section>
+        <section class="exercise" id="exercise4">
             <h2>Ejercicio 4: Mayor de 2 números</h2>
             <p>Calcula el mayor de dos números.</p>
             <button class="btn-run" onclick="runExercise4()">Ejecutar Pruebas</button>
@@ -72,7 +230,7 @@
         </section>
 
         <!-- Ejercicio 8: Función que retorna otra función -->
-        <section class="exercise" id="exercise8"></section>
+        <section class="exercise" id="exercise8">
             <h2>Ejercicio 8: Función que retorna otra función</h2>
             <p>Función que devuelve otra función (closure).</p>
             <button class="btn-run" onclick="runExercise8()">Ejecutar Pruebas</button>
@@ -80,104 +238,18 @@
         </section>
 
         <!-- Ejercicio 9: Funciones con argumentos predeterminados -->
-        <section class="exercise" id="exercise9"></section>
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            border-left: 4px solid #6a11cb;
-        }
-        
-        .code-section h3 {
-            margin-bottom: 10px;
-            color: #6a11cb;
-        }
-        
-        pre {
-            background-color: #282c34;
-            color: #abb2bf;
-            padding: 15px;
-            border-radius: 6px;
-            overflow-x: auto;
-            font-family: 'Fira Code', monospace;
-            tab-size: 4;
-        }
-        
-        .tests {
-            background-color: #e8f4fc;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .tests h3 {
-            color: #2575fc;
-            margin-bottom: 10px;
-        }
-        
-        .result {
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 6px;
-            margin-top: 10px;
-            font-family: monospace;
-        }
-        
-        .btn-run {
-            background-color: #6a11cb;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-        
-        .btn-run:hover {
-            background-color: #2575fc;
-        }
-        
-        .game-container {
-            background-color: #e8f4fc;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .game-container input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-        
-        .game-container button {
-            background-color: #6a11cb;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .game-message {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 6px;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: #777;
-        }
-        
-        @media (max-width: 768px) {
-            .code-container {
-                flex-direction: column;
-            }
+        <section class="exercise" id="exercise9">
+            <h2>Ejercicio 9: Funciones con argumentos predeterminados</h2>
+            <p>Este ejercicio muestra cómo crear funciones que devuelven otras funciones con parámetros predefinidos.</p>
+            <button class="btn-run" onclick="runExercise9()">Ejecutar Pruebas</button>
+            <div class="result" id="result9"></div>
+        </section>
+
+        <!-- Ejercicio 10: Juego de adivinar -->
+        <section class="exercise" id="exercise10">
+            <h2>Ejercicio 10: Juego de adivinar el número</h2>
+            <p>Un juego interactivo que genera un número aleatorio y permite al usuario adivinarlo.</p>
+            <div class="game-container"></div>
         }
     </style>
 </head>
@@ -458,21 +530,8 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
             <div class="code-container">
                 <div class="code-section">
                     <h3>Función Principal</h3>
-                    <pre><code>function iniciarJuegoAdivinanza(min, max) {
-    const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
-    let intentos = 0;
-    
-    return function(adivinanza) {
-        intentos++;
-        if (adivinanza === numeroAleatorio) {
-            return `¡Correcto! Adivinaste en ${intentos} intentos.`;
-        } else if (adivinanza < numeroAleatorio) {
-            return "Demasiado bajo. Intenta de nuevo.";
-        } else {
-            return "Demasiado alto. Intenta de nuevo.";
-        }
-    };
-}</code></pre>
+                   
+</code></pre>
                 </div>
                 
                 <div class="code-section">

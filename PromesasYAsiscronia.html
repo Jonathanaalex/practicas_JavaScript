@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios de Funciones en JavaScript</title>
+    <title>Ejercicios de Promesas y Asincronía</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -230,617 +230,434 @@
                 flex-direction: column;
             }
         }
+        
+        /* Estilos específicos para resultados */
+        .loading {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #e74c3c;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .user-list, .post-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .user-list li, .post-list li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .post-list li {
+            border-left: 4px solid var(--accent-color);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="page-title">Ejercicios de Funciones en JavaScript</h1>
+            <h1 class="page-title">Ejercicios de Promesas y Asincronía</h1>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-link">
-                    <i class="fas fa-code"></i>
-                    Ir a DOM
+                    <i class="fas fa-home"></i>
+                    Inicio
                 </a>
-                <a href="EjerciciosFunciones.html" class="nav-link">
-                    <i class="fas fa-functions"></i>
-                    Ir a Ejercicios de Funciones
+                <a href="#" class="nav-link">
+                    <i class="fas fa-book"></i>
+                    Teoría
                 </a>
-                <a href="ManejoAreglos.html" class="nav-link">
-                    <i class="fas fa-layer-group"></i>
-                    Ir a manejo de arreglos
+                <a href="#" class="nav-link">
+                    <i class="fas fa-tasks"></i>
+                    Más Ejercicios
                 </a>
             </nav>
         </div>
 
-        <!-- Ejercicio 1: Suma de dos números -->
+        <!-- Ejercicio 1: Callback de suma -->
         <div class="card">
-            <h1><i class="fas fa-plus"></i> Ejercicio 1: Suma de dos números</h1>
-            <p>Este ejercicio se centra en la creación de funciones para sumar dos números, utilizando tanto la sintaxis de función tradicional como la de función flecha.</p>
+            <h1><i class="fas fa-plus-circle"></i> Ejercicio 1: Callback de suma</h1>
+            <p>Este ejercicio muestra el uso de callbacks para manejar operaciones asíncronas. La función sumar recibe dos números y un callback que se ejecuta con el resultado.</p>
             
             <div class="code-container">
                 <div class="code-section">
-                    <h3>Función Tradicional</h3>
-                    <pre><code>function sumar(a, b) {
-    return a + b;
-}</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Función Flecha</h3>
-                    <pre><code>const sumarFlecha = (a, b) => a + b;</code></pre>
+                    <h3>Código JavaScript</h3>
+                    <pre><code>function sumar(a, b, callback) {
+    const resultado = a + b;
+    callback(resultado);
+}
+
+function mostrarResultado(resultado) {
+    document.getElementById('resultado').innerHTML = resultado;
+}
+
+sumar(5, 10, mostrarResultado);</code></pre>
                 </div>
             </div>
             
             <div class="demo-area">
-                <h3>Pruebas</h3>
+                <h3>Prueba el ejercicio</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarEjercicio1()">
+                    <button onclick="ejercicio1()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
+                        Ejecutar Suma
                     </button>
                 </div>
                 <div class="result-area" id="resultado1"></div>
             </div>
         </div>
 
-        <!-- Ejercicio 2: División de dos números -->
+        <!-- Ejercicio 2: Callback con setTimeout -->
         <div class="card">
-            <h1><i class="fas fa-divide"></i> Ejercicio 2: División de dos números</h1>
-            <p>Manejando el caso de división por cero.</p>
+            <h1><i class="fas fa-clock"></i> Ejercicio 2: Callback con setTimeout</h1>
+            <p>Este ejercicio simula una operación asíncrona con setTimeout. Después de 2 segundos, se ejecuta el callback con los datos obtenidos.</p>
             
             <div class="code-container">
                 <div class="code-section">
-                    <h3>Función Tradicional</h3>
-                    <pre><code>function dividir(a, b) {
-    if (b === 0) {
-        return 'Error: División por cero';
-    }
-    return a / b;
-}</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Función Flecha</h3>
-                    <pre><code>const dividirFlecha = (a, b) => 
-    b === 0 ? 'Error: División por cero' : a / b;</code></pre>
+                    <h3>Código JavaScript</h3>
+                    <pre><code>function obtenerDatos(callback) {
+    setTimeout(() => {
+        const datos = { nombre: "Juan", edad: 30 };
+        callback(datos);
+    }, 2000);
+}
+
+function mostrarDatos(datos) {
+    document.getElementById('resultado').innerHTML = 
+        `Nombre: ${datos.nombre}, Edad: ${datos.edad}`;
+}
+
+obtenerDatos(mostrarDatos);</code></pre>
                 </div>
             </div>
             
             <div class="demo-area">
-                <h3>Pruebas</h3>
+                <h3>Prueba el ejercicio</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarEjercicio2()">
+                    <button onclick="ejercicio2()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
+                        Obtener Datos
                     </button>
                 </div>
                 <div class="result-area" id="resultado2"></div>
             </div>
         </div>
 
-        <!-- Ejercicio 3: Potencia de un número -->
+        <!-- Ejercicio 3: Promesas con API -->
         <div class="card">
-            <h1><i class="fas fa-bolt"></i> Ejercicio 3: Potencia de un número</h1>
-            <p>Calcula la potencia de un número elevado a un exponente.</p>
+            <h1><i class="fas fa-database"></i> Ejercicio 3: Promesas con API</h1>
+            <p>Este ejercicio utiliza promesas para obtener datos de una API (JSONPlaceholder). Se usa fetch para hacer la solicitud y then/catch para manejar la respuesta y los errores.</p>
             
             <div class="code-container">
                 <div class="code-section">
-                    <h3>Función Tradicional</h3>
-                    <pre><code>function potencia(base, exponente) {
-    return Math.pow(base, exponente);
+                    <h3>Código JavaScript</h3>
+                    <pre><code>function obtenerPosts() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta de la API');
+            }
+            return response.json();
+        })
+        .then(data => {
+            mostrarPosts(data);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+}
+
+function mostrarPosts(posts) {
+    // Mostrar los posts en el HTML
 }</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Función Flecha</h3>
-                    <pre><code>const potenciaFlecha = (base, exponente) => 
-    Math.pow(base, exponente);</code></pre>
                 </div>
             </div>
             
             <div class="demo-area">
-                <h3>Pruebas</h3>
+                <h3>Prueba el ejercicio</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarEjercicio3()">
+                    <button onclick="ejercicio3()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
+                        Obtener Posts
                     </button>
                 </div>
                 <div class="result-area" id="resultado3"></div>
             </div>
         </div>
 
-        <!-- Ejercicio 4: Mayor de 2 números -->
+        <!-- Ejercicio 4: Async/Await con API -->
         <div class="card">
-            <h1><i class="fas fa-arrow-up"></i> Ejercicio 4: Mayor de 2 números</h1>
-            <p>Crea una función tradicional y una función flecha para calcular el mayor de dos números.</p>
+            <h1><i class="fas fa-bolt"></i> Ejercicio 4: Async/Await con API</h1>
+            <p>Este ejercicio hace lo mismo que el anterior pero usando async/await, que permite escribir código asíncrono de manera más clara y estructurada.</p>
             
             <div class="code-container">
                 <div class="code-section">
-                    <h3>Función Tradicional</h3>
-                    <pre><code>function mayor(num1, num2) {
-    if (num1 > num2) {
-        return num1;
-    } else {
-        return num2;
+                    <h3>Código JavaScript</h3>
+                    <pre><code>async function obtenerPostsConAsyncAwait() {
+    try {
+        let response = await fetch(
+            'https://jsonplaceholder.typicode.com/posts'
+        );
+        if (!response.ok) {
+            throw new Error('Error en la llamada a la API');
+        }
+        let posts = await response.json();
+        mostrarPosts(posts);
+    } catch (error) {
+        console.log('Error:', error);
     }
+}
+
+function mostrarPosts(posts) {
+    // Mostrar los posts en el HTML
 }</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Función Flecha</h3>
-                    <pre><code>const mayorFlecha = (num1, num2) => 
-    (num1 > num2) ? num1 : num2;</code></pre>
                 </div>
             </div>
             
             <div class="demo-area">
-                <h3>Pruebas</h3>
+                <h3>Prueba el ejercicio</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarEjercicio4()">
+                    <button onclick="ejercicio4()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
+                        Obtener Posts (Async/Await)
                     </button>
                 </div>
                 <div class="result-area" id="resultado4"></div>
             </div>
         </div>
 
-        <!-- Ejercicio 5: Función que toma otra función como parámetro -->
+        <!-- Ejercicio 5: Mostrar usuarios -->
         <div class="card">
-            <h1><i class="fas fa-exchange-alt"></i> Ejercicio 5: Función de orden superior</h1>
-            <p>Este ejercicio se centra en la creación de una función que toma dos números y otra función como parámetros, demostrando el concepto de <strong>funciones de orden superior</strong>.</p>
+            <h1><i class="fas fa-users"></i> Ejercicio 5: Mostrar usuarios</h1>
+            <p>Este ejercicio obtiene una lista de usuarios de una API y muestra sus nombres. Similar a los ejercicios de posts pero enfocado en usuarios.</p>
             
             <div class="code-container">
                 <div class="code-section">
-                    <h3>Función Principal</h3>
-                    <pre><code>function ejecutarOperacion(a, b, operacion) {
-    return operacion(a, b);
+                    <h3>Código JavaScript</h3>
+                    <pre><code>function obtenerUsuarios() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta de la API');
+            }
+            return response.json();
+        })
+        .then(users => {
+            mostrarUsuarios(users);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+}
+
+function mostrarUsuarios(users) {
+    // Mostrar los usuarios en el HTML
 }</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Funciones de Ejemplo</h3>
-                    <pre><code>const sumar = (a, b) => a + b;
-const multiplicar = (a, b) => a * b;
-const restar = (a, b) => a - b;
-const dividir = (a, b) => a / b;</code></pre>
                 </div>
             </div>
             
             <div class="demo-area">
-                <h3>Pruebas</h3>
+                <h3>Prueba el ejercicio</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarEjercicio5()">
+                    <button onclick="ejercicio5()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
+                        Obtener Usuarios
                     </button>
                 </div>
                 <div class="result-area" id="resultado5"></div>
             </div>
         </div>
 
-        <!-- Ejercicio 6: Función de orden superior con map -->
+        <!-- Ejercicio 6: Mostrar usuarios con más información -->
         <div class="card">
-            <h1><i class="fas fa-map"></i> Ejercicio 6: Función de orden superior con map</h1>
-            <p>Este ejercicio muestra cómo crear una función que aplica una operación a cada elemento de un array utilizando el método map.</p>
+            <h1><i class="fas fa-user-circle"></i> Ejercicio 6: Mostrar usuarios con más información</h1>
+            <p>Este ejercicio extiende el anterior mostrando más información de cada usuario (nombre, email y teléfono). Demuestra cómo trabajar con datos más complejos de una API.</p>
             
             <div class="code-container">
                 <div class="code-section">
-                    <h3>Función Principal</h3>
-                    <pre><code>function aplicarOperacionArray(arr, operacion) {
-    return arr.map(operacion);
+                    <h3>Código JavaScript</h3>
+                    <pre><code>function obtenerUsuariosDetalles() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta de la API');
+            }
+            return response.json();
+        })
+        .then(users => {
+            mostrarUsuariosDetalles(users);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+}
+
+function mostrarUsuariosDetalles(users) {
+    // Mostrar los usuarios con detalles en el HTML
 }</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Funciones de Ejemplo</h3>
-                    <pre><code>const duplicar = (x) => x * 2;
-const triplicar = (x) => x * 3;
-const cuadrado = (x) => x * x;
-const cubo = (x) => x * x * x;</code></pre>
                 </div>
             </div>
             
             <div class="demo-area">
-                <h3>Pruebas</h3>
+                <h3>Prueba el ejercicio</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarEjercicio6()">
+                    <button onclick="ejercicio6()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
+                        Obtener Usuarios con Detalles
                     </button>
                 </div>
                 <div class="result-area" id="resultado6"></div>
             </div>
         </div>
-
-        <!-- Ejercicio 7: Closure para contar -->
-        <div class="card">
-            <h1><i class="fas fa-calculator"></i> Ejercicio 7: Closure para contar</h1>
-            <p>Este ejemplo muestra cómo usar closures para crear un contador con estado privado.</p>
-            
-            <div class="code-container">
-                <div class="code-section">
-                    <h3>Función Principal</h3>
-                    <pre><code>function crearContador() {
-    let contador = 0;
-    return function() {
-        contador += 1;
-        return contador;
-    };
-}</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Explicación</h3>
-                    <p>La función <code>crearContador</code> define una variable <code>contador</code> que no es accesible desde el exterior. Sin embargo, la función interna que se devuelve puede acceder y modificar <code>contador</code>, creando un estado privado.</p>
-                </div>
-            </div>
-            
-            <div class="demo-area">
-                <h3>Pruebas</h3>
-                <div class="button-group">
-                    <button onclick="ejecutarEjercicio7()">
-                        <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
-                    </button>
-                </div>
-                <div class="result-area" id="resultado7"></div>
-            </div>
-        </div>
-
-        <!-- Ejercicio 8: Función que retorna otra función -->
-        <div class="card">
-            <h1><i class="fas fa-language"></i> Ejercicio 8: Función que retorna otra función</h1>
-            <p>Este ejercicio demuestra cómo crear una función que devuelve otra función, ilustrando el concepto de <strong>closures</strong> en JavaScript.</p>
-            
-            <div class="code-container">
-                <div class="code-section">
-                    <h3>Función Principal</h3>
-                    <pre><code>function crearSaludo(saludo) {
-    return function(nombre) {
-        return `${saludo}, ${nombre}!`;
-    };
-}</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Creación de Funciones</h3>
-                    <pre><code>const saludarEnEspanol = crearSaludo("Hola");
-const saludarEnIngles = crearSaludo("Hello");
-const saludarEnFrances = crearSaludo("Bonjour");</code></pre>
-                </div>
-            </div>
-            
-            <div class="demo-area">
-                <h3>Pruebas</h3>
-                <div class="button-group">
-                    <button onclick="ejecutarEjercicio8()">
-                        <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
-                    </button>
-                </div>
-                <div class="result-area" id="resultado8"></div>
-            </div>
-        </div>
-
-        <!-- Ejercicio 9: Funciones con argumentos predeterminados -->
-        <div class="card">
-            <h1><i class="fas fa-cogs"></i> Ejercicio 9: Funciones con argumentos predeterminados</h1>
-            <p>Este ejercicio muestra cómo crear funciones que devuelven otras funciones con parámetros predefinidos.</p>
-            
-            <div class="code-container">
-                <div class="code-section">
-                    <h3>Función Principal</h3>
-                    <pre><code>function crearMultiplicador(factor) {
-    return function(numero) {
-        return numero * factor;
-    };
-}</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Creación de Funciones</h3>
-                    <pre><code>const duplicar = crearMultiplicador(2);
-const triplicar = crearMultiplicador(3);
-const cuadruplicar = crearMultiplicador(4);</code></pre>
-                </div>
-            </div>
-            
-            <div class="demo-area">
-                <h3>Pruebas</h3>
-                <div class="button-group">
-                    <button onclick="ejecutarEjercicio9()">
-                        <i class="fas fa-play"></i>
-                        Ejecutar Pruebas
-                    </button>
-                </div>
-                <div class="result-area" id="resultado9"></div>
-            </div>
-        </div>
-
-        <!-- Ejercicio 10: Juego de adivinar -->
-        <div class="card">
-            <h1><i class="fas fa-gamepad"></i> Ejercicio 10: Juego de adivinar el número</h1>
-            <p>Un juego interactivo que genera un número aleatorio y permite al usuario adivinarlo.</p>
-            
-            <div class="code-container">
-                <div class="code-section">
-                    <h3>Función Principal</h3>
-                    <pre><code>function iniciarJuegoAdivinanza(min, max) {
-    const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
-    let intentos = 0;
-    
-    return function(adivinanza) {
-        intentos++;
-        if (adivinanza === numeroAleatorio) {
-            return `¡Correcto! Adivinaste en ${intentos} intentos.`;
-        } else if (adivinanza < numeroAleatorio) {
-            return "Demasiado bajo. Intenta de nuevo.";
-        } else {
-            return "Demasiado alto. Intenta de nuevo.";
-        }
-    };
-}</code></pre>
-                </div>
-                
-                <div class="code-section">
-                    <h3>Implementación</h3>
-                    <p>Esta función utiliza closures para mantener el estado del juego (número aleatorio y contador de intentos) entre llamadas.</p>
-                </div>
-            </div>
-            
-            <div class="demo-area">
-                <h3>Juega ahora</h3>
-                <p>Adivina un número entre 1 y 100:</p>
-                <input type="number" id="guessInput" min="1" max="100">
-                <div class="button-group">
-                    <button onclick="makeGuess()">
-                        <i class="fas fa-question-circle"></i>
-                        Adivinar
-                    </button>
-                    <button onclick="resetGame()">
-                        <i class="fas fa-redo"></i>
-                        Reiniciar Juego
-                    </button>
-                </div>
-                <div class="result-area" id="gameMessage"></div>
-            </div>
-        </div>
     </div>
 
     <div class="footer">
-        <p>Ejercicios de Funciones en JavaScript &copy; 2023</p>
+        <p>Ejercicios de Promesas y Asincronía &copy; 2024</p>
     </div>
 
     <script>
-        // Ejercicio 1: Suma de dos números
-        function ejecutarEjercicio1() {
-            function sumar(a, b) {
-                return a + b;
-            }
-            
-            const sumarFlecha = (a, b) => a + b;
-            
-            const resultado1 = document.getElementById('resultado1');
-            resultado1.innerHTML = `
-                <strong>sumar(5, 3):</strong> ${sumar(5, 3)}<br>
-                <strong>sumarFlecha(5, 3):</strong> ${sumarFlecha(5, 3)}
-            `;
+        // Función auxiliar para mostrar resultados
+        function showResult(id, content) {
+            const container = document.getElementById(id);
+            container.innerHTML = content;
         }
         
-        // Ejercicio 2: División de dos números
-        function ejecutarEjercicio2() {
-            function dividir(a, b) {
-                if (b === 0) {
-                    return 'Error: División por cero';
+        // Ejercicio 1: Callback de suma
+        function ejercicio1() {
+            function sumar(a, b, callback) {
+                const resultado = a + b;
+                callback(resultado);
+            }
+            
+            function mostrarResultado(resultado) {
+                showResult('resultado1', `La suma de 5 y 10 es: <strong>${resultado}</strong>`);
+            }
+            
+            sumar(5, 10, mostrarResultado);
+        }
+        
+        // Ejercicio 2: Callback con setTimeout
+        function ejercicio2() {
+            function obtenerDatos(callback) {
+                showResult('resultado2', '<div class="loading">Esperando 2 segundos...</div>');
+                
+                setTimeout(() => {
+                    const datos = { nombre: "Juan", edad: 30 };
+                    callback(datos);
+                }, 2000);
+            }
+            
+            function mostrarDatos(datos) {
+                showResult('resultado2', `Nombre: <strong>${datos.nombre}</strong>, Edad: <strong>${datos.edad}</strong>`);
+            }
+            
+            obtenerDatos(mostrarDatos);
+        }
+        
+        // Ejercicio 3: Promesas con API
+        function ejercicio3() {
+            showResult('resultado3', '<div class="loading">Cargando posts...</div>');
+            
+            fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la API');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let html = '<h4>Posts obtenidos:</h4><ul class="post-list">';
+                    // Mostrar solo los primeros 5 posts para no saturar la página
+                    data.slice(0, 5).forEach(post => {
+                        html += `<li><strong>${post.title}</strong><br>${post.body.substring(0, 60)}...</li>`;
+                    });
+                    html += '</ul>';
+                    showResult('resultado3', html);
+                })
+                .catch(error => {
+                    showResult('resultado3', `<div class="error">Error: ${error.message}</div>`);
+                });
+        }
+        
+        // Ejercicio 4: Async/Await con API
+        async function ejercicio4() {
+            showResult('resultado4', '<div class="loading">Cargando posts...</div>');
+            
+            try {
+                let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                if (!response.ok) {
+                    throw new Error('Error en la llamada a la API');
                 }
-                return a / b;
+                let posts = await response.json();
+                
+                let html = '<h4>Posts obtenidos (Async/Await):</h4><ul class="post-list">';
+                // Mostrar solo los primeros 5 posts para no saturar la página
+                posts.slice(0, 5).forEach(post => {
+                    html += `<li><strong>${post.title}</strong><br>${post.body.substring(0, 60)}...</li>`;
+                });
+                html += '</ul>';
+                showResult('resultado4', html);
+            } catch (error) {
+                showResult('resultado4', `<div class="error">Error: ${error.message}</div>`);
             }
-            
-            const dividirFlecha = (a, b) => b === 0 ? 'Error: División por cero' : a / b;
-            
-            const resultado2 = document.getElementById('resultado2');
-            resultado2.innerHTML = `
-                <strong>dividir(8, 2):</strong> ${dividir(8, 2)}<br>
-                <strong>dividir(8, 0):</strong> ${dividir(8, 0)}<br>
-                <strong>dividirFlecha(8, 2):</strong> ${dividirFlecha(8, 2)}<br>
-                <strong>dividirFlecha(8, 0):</strong> ${dividirFlecha(8, 0)}
-            `;
         }
         
-        // Ejercicio 3: Potencia de un número
-        function ejecutarEjercicio3() {
-            function potencia(base, exponente) {
-                return Math.pow(base, exponente);
-            }
+        // Ejercicio 5: Mostrar usuarios
+        function ejercicio5() {
+            showResult('resultado5', '<div class="loading">Cargando usuarios...</div>');
             
-            const potenciaFlecha = (base, exponente) => Math.pow(base, exponente);
-            
-            const resultado3 = document.getElementById('resultado3');
-            resultado3.innerHTML = `
-                <strong>potencia(2, 3):</strong> ${potencia(2, 3)}<br>
-                <strong>potenciaFlecha(2, 3):</strong> ${potenciaFlecha(2, 3)}
-            `;
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la API');
+                    }
+                    return response.json();
+                })
+                .then(users => {
+                    let html = '<h4>Usuarios obtenidos:</h4><ul class="user-list">';
+                    users.forEach(user => {
+                        html += `<li>${user.name}</li>`;
+                    });
+                    html += '</ul>';
+                    showResult('resultado5', html);
+                })
+                .catch(error => {
+                    showResult('resultado5', `<div class="error">Error: ${error.message}</div>`);
+                });
         }
         
-        // Ejercicio 4: Mayor de 2 números
-        function ejecutarEjercicio4() {
-            function mayor(num1, num2) {
-                if (num1 > num2) {
-                    return num1;
-                } else {
-                    return num2;
-                }
-            }
+        // Ejercicio 6: Mostrar usuarios con más información
+        function ejercicio6() {
+            showResult('resultado6', '<div class="loading">Cargando usuarios con detalles...</div>');
             
-            const mayorFlecha = (num1, num2) => (num1 > num2) ? num1 : num2;
-            
-            const resultado4 = document.getElementById('resultado4');
-            resultado4.innerHTML = `
-                <strong>mayor(5, 10):</strong> ${mayor(5, 10)}<br>
-                <strong>mayorFlecha(5, 10):</strong> ${mayorFlecha(5, 10)}
-            `;
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la API');
+                    }
+                    return response.json();
+                })
+                .then(users => {
+                    let html = '<h4>Usuarios con detalles:</h4><ul class="user-list">';
+                    users.forEach(user => {
+                        html += `<li><strong>${user.name}</strong><br>Email: ${user.email}<br>Teléfono: ${user.phone}</li>`;
+                    });
+                    html += '</ul>';
+                    showResult('resultado6', html);
+                })
+                .catch(error => {
+                    showResult('resultado6', `<div class="error">Error: ${error.message}</div>`);
+                });
         }
-        
-        // Ejercicio 5: Función de orden superior
-        function ejecutarEjercicio5() {
-            function ejecutarOperacion(a, b, operacion) {
-                return operacion(a, b);
-            }
-            
-            const sumar = (a, b) => a + b;
-            const multiplicar = (a, b) => a * b;
-            const restar = (a, b) => a - b;
-            const dividir = (a, b) => a / b;
-            
-            const resultado5 = document.getElementById('resultado5');
-            resultado5.innerHTML = `
-                <strong>ejecutarOperacion(5, 3, sumar):</strong> ${ejecutarOperacion(5, 3, sumar)}<br>
-                <strong>ejecutarOperacion(5, 3, multiplicar):</strong> ${ejecutarOperacion(5, 3, multiplicar)}<br>
-                <strong>ejecutarOperacion(5, 3, restar):</strong> ${ejecutarOperacion(5, 3, restar)}<br>
-                <strong>ejecutarOperacion(10, 2, dividir):</strong> ${ejecutarOperacion(10, 2, dividir)}
-            `;
-        }
-        
-        // Ejercicio 6: Función de orden superior con map
-        function ejecutarEjercicio6() {
-            function aplicarOperacionArray(arr, operacion) {
-                return arr.map(operacion);
-            }
-            
-            const duplicar = (x) => x * 2;
-            const triplicar = (x) => x * 3;
-            const cuadrado = (x) => x * x;
-            const cubo = (x) => x * x * x;
-            
-            const numeros = [1, 2, 3, 4];
-            const resultado6 = document.getElementById('resultado6');
-            resultado6.innerHTML = `
-                <strong>Array original:</strong> [${numeros.join(', ')}]<br>
-                <strong>Duplicar:</strong> [${aplicarOperacionArray(numeros, duplicar).join(', ')}]<br>
-                <strong>Triplicar:</strong> [${aplicarOperacionArray(numeros, triplicar).join(', ')}]<br>
-                <strong>Cuadrado:</strong> [${aplicarOperacionArray(numeros, cuadrado).join(', ')}]<br>
-                <strong>Cubo:</strong> [${aplicarOperacionArray(numeros, cubo).join(', ')}]
-            `;
-        }
-        
-        // Ejercicio 7: Closure para contar
-        function ejecutarEjercicio7() {
-            function crearContador() {
-                let contador = 0;
-                return function() {
-                    contador += 1;
-                    return contador;
-                };
-            }
-            
-            const contador = crearContador();
-            const resultado7 = document.getElementById('resultado7');
-            resultado7.innerHTML = `
-                <strong>contador():</strong> ${contador()}<br>
-                <strong>contador():</strong> ${contador()}<br>
-                <strong>contador():</strong> ${contador()}
-            `;
-        }
-        
-        // Ejercicio 8: Función que retorna otra función
-        function ejecutarEjercicio8() {
-            function crearSaludo(saludo) {
-                return function(nombre) {
-                    return `${saludo}, ${nombre}!`;
-                };
-            }
-            
-            const saludarEnEspanol = crearSaludo("Hola");
-            const saludarEnIngles = crearSaludo("Hello");
-            const saludarEnFrances = crearSaludo("Bonjour");
-            
-            const resultado8 = document.getElementById('resultado8');
-            resultado8.innerHTML = `
-                <strong>saludarEnEspanol('Juan'):</strong> ${saludarEnEspanol('Juan')}<br>
-                <strong>saludarEnIngles('John'):</strong> ${saludarEnIngles('John')}<br>
-                <strong>saludarEnFrances('Pierre'):</strong> ${saludarEnFrances('Pierre')}
-            `;
-        }
-        
-        // Ejercicio 9: Funciones con argumentos predeterminados
-        function ejecutarEjercicio9() {
-            function crearMultiplicador(factor) {
-                return function(numero) {
-                    return numero * factor;
-                };
-            }
-            
-            const duplicar = crearMultiplicador(2);
-            const triplicar = crearMultiplicador(3);
-            const cuadruplicar = crearMultiplicador(4);
-            
-            const resultado9 = document.getElementById('resultado9');
-            resultado9.innerHTML = `
-                <strong>duplicar(5):</strong> ${duplicar(5)}<br>
-                <strong>triplicar(5):</strong> ${triplicar(5)}<br>
-                <strong>cuadruplicar(5):</strong> ${cuadruplicar(5)}
-            `;
-        }
-        
-        // Ejercicio 10: Juego de adivinar
-        let juegoAdivinanza;
-        
-        function iniciarJuego() {
-            juegoAdivinanza = iniciarJuegoAdivinanza(1, 100);
-            document.getElementById('gameMessage').textContent = "¡Juego iniciado! Adivina un número entre 1 y 100.";
-        }
-        
-        function iniciarJuegoAdivinanza(min, max) {
-            const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
-            let intentos = 0;
-            
-            return function(adivinanza) {
-                intentos++;
-                if (adivinanza === numeroAleatorio) {
-                    return `¡Correcto! Adivinaste en ${intentos} intentos. El número era ${numeroAleatorio}.`;
-                } else if (adivinanza < numeroAleatorio) {
-                    return "Demasiado bajo. Intenta de nuevo.";
-                } else {
-                    return "Demasiado alto. Intenta de nuevo.";
-                }
-            };
-        }
-        
-        function makeGuess() {
-            if (!juegoAdivinanza) {
-                iniciarJuego();
-            }
-            
-            const guessInput = document.getElementById('guessInput');
-            const guess = parseInt(guessInput.value);
-            const messageElement = document.getElementById('gameMessage');
-            
-            if (isNaN(guess) || guess < 1 || guess > 100) {
-                messageElement.textContent = "Por favor, ingresa un número válido entre 1 y 100.";
-                return;
-            }
-            
-            const result = juegoAdivinanza(guess);
-            messageElement.textContent = result;
-            
-            if (result.includes("¡Correcto!")) {
-                // Juego terminado
-                juegoAdivinanza = null;
-            }
-            
-            guessInput.value = "";
-            guessInput.focus();
-        }
-        
-        function resetGame() {
-            iniciarJuego();
-            document.getElementById('guessInput').value = "";
-        }
-        
-        // Iniciar el juego al cargar la página
-        window.onload = iniciarJuego;
     </script>
 </body>
 </html>

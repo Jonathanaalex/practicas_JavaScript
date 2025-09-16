@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promesas y Asincronía en JavaScript</title>
+    <title>Ejercicios de Funciones en JavaScript</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #7c3aed;
-            --accent-color: #a78bfa;
+            --primary-color: #3b82f6;
+            --secondary-color: #2563eb;
+            --accent-color: #60a5fa;
             --text-color: #1f2937;
             --light-text: #6b7280;
             --background: #f9fafb;
@@ -68,7 +68,7 @@
             font-weight: 500;
             padding: 10px 20px;
             border-radius: 8px;
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(59, 130, 246, 0.1);
             transition: all 0.3s ease;
         }
         
@@ -111,6 +111,37 @@
             margin-bottom: 20px;
         }
         
+        .code-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .code-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .code-section h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            tab-size: 4;
+        }
+        
         .demo-area {
             background: #f8fafc;
             padding: 20px;
@@ -145,53 +176,12 @@
             transform: translateY(-2px);
         }
         
-        .code-block {
-            background: #282c34;
-            color: #abb2bf;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            overflow-x: auto;
-            font-family: 'Fira Code', monospace;
-        }
-        
         .result-area {
             background: #ecfdf5;
             padding: 15px;
             border-radius: 8px;
             margin-top: 15px;
             border: 1px solid var(--accent-color);
-        }
-        
-        .user-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .user-list li {
-            padding: 10px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .user-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .user-info {
-            flex: 1;
-        }
-        
-        .user-name {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .user-email {
-            color: var(--light-text);
-            font-size: 0.9rem;
         }
         
         .footer {
@@ -236,26 +226,18 @@
                 padding: 20px;
             }
             
-            .user-list li {
+            .code-container {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
             }
         }
     </style>
 </head>
 <body>
-    
     <div class="container">
         <div class="header">
-            <h1 class="page-title">Promesas y Asincronía en JavaScript</h1>
-            <h2> Concepto deasincronía en JavaScript</h2>
-            <p> La asincronía en JavaScript permite ejecutar tareas sin bloquear el hilo principal del
-        programa. Esto es útil cuando necesitas realizar operaciones que pueden llevar tiempo,
-        como acceder a una API o leer archivos.
-        La asincronía se maneja comúnmente con callbacks, promesas y async/await.</p>
+            <h1 class="page-title">Ejercicios de Funciones en JavaScript</h1>
             <nav class="nav-menu">
-                <a href="DOM.html" class="nav-link">
+                <a href="index.html" class="nav-link">
                     <i class="fas fa-code"></i>
                     Ir a DOM
                 </a>
@@ -270,374 +252,595 @@
             </nav>
         </div>
 
-        <!-- Callbacks -->
+        <!-- Ejercicio 1: Suma de dos números -->
         <div class="card">
-            <h1><i class="fas fa-exchange-alt"></i> Callbacks</h1>
-            <p>Un callback en JavaScript es una función que se pasa como argumento a otra función y se ejecuta después de que se completa la tarea de la función que la recibió. Los callbacks son una parte fundamental de la programación asíncrona en JavaScript.</p>
+            <h1><i class="fas fa-plus"></i> Ejercicio 1: Suma de dos números</h1>
+            <p>Este ejercicio se centra en la creación de funciones para sumar dos números, utilizando tanto la sintaxis de función tradicional como la de función flecha.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Tradicional</h3>
+                    <pre><code>function sumar(a, b) {
+    return a + b;
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Función Flecha</h3>
+                    <pre><code>const sumarFlecha = (a, b) => a + b;</code></pre>
+                </div>
+            </div>
             
             <div class="demo-area">
-                <h3>Ejemplo: Suma con Callback</h3>
-               <img src="Imagenes/callback.png" alt="">
-                <div class="result-area" id="resultado-callback"></div>
+                <h3>Pruebas</h3>
                 <div class="button-group">
-                    <button onclick="ejecutarCallback()">
+                    <button onclick="ejecutarEjercicio1()">
                         <i class="fas fa-play"></i>
-                        Ejecutar Callback
+                        Ejecutar Pruebas
                     </button>
                 </div>
+                <div class="result-area" id="resultado1"></div>
             </div>
         </div>
 
-        <!-- Promesas -->
+        <!-- Ejercicio 2: División de dos números -->
         <div class="card">
-            <h1><i class="fas fa-hourglass-half"></i> Promesas</h1>
-            <p>Una promesa en JavaScript es un objeto que representa la eventual finalización (o falla) de una operación asíncrona y su valor resultante. Las promesas son una forma de manejar operaciones asíncronas de manera más legible y manejable que los callbacks.</p>
+            <h1><i class="fas fa-divide"></i> Ejercicio 2: División de dos números</h1>
+            <p>Manejando el caso de división por cero.</p>
             
-            <div class="demo-area">
-                <h3>Ejemplo: Obtener Posts de una API</h3>
-                <img src="Imagenes/Nombrey edad.png" alt="">
-                <div class="result-area">
-                    <h4>Posts obtenidos:</h4>
-                    <ul id="posts-list"></ul>
-                </div>
-                <div class="button-group">
-                    <button onclick="obtenerDatos()">
-                        <i class="fas fa-download"></i>
-                        Obtener datos
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Async/Await -->
-        <div class="card">
-            <h1><i class="fas fa-clock"></i> Async/Await</h1>
-            <p>Ejemplo 2 promesas: Tomando datos de una API de prueba de internet.
-                Utilizaremos esta api de prueba: https://jsonplaceholder.typicode.com/post</p>
-            <p>async y await son palabras clave que permiten escribir código asincrónico de manera más clara y estructurada. async declara una función asincrónica y await se usa dentro de esta para esperar el resultado de una promesa.</p>
-            
-            <div class="demo-area">
-                <h3>Ejemplo: Obtener Posts con Async/Await</h3>
-                <div class="code-block">
-
-                </div>
-                <div class="result-area">
-                    <h4>Ejemplo 2 promesas:</h4>
-                    <ul id="posts-list-async"></ul>
-                    <img src="Imagenes/promesa.png" alt="">
-                </div>
-                <div class="button-group">
-                    <button onclick="obtenerPostsConAsyncAwait()">
-                        <i class="fas fa-download"></i>
-                        Obtener Posts (Async/Await)
-                    </button>
-                </div>
-
-                <div class="result-area">
-                    <h4>Posts obtenidos con Async/Await:</h4>
-                    <ul id="posts-list-async"></ul>
-                    <img src="Imagenes/Estructura promesa.png" alt="">
-                </div>
-                <div class="button-group">
-                    <button onclick="obtenerPosts()">
-                        <i class="fas fa-download"></i>
-                        Obtener Posts (Async/Await)
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Ejercicio: Mostrar Usuarios -->
-        <div class="card">
-            <h1><i class="fas fa-users"></i> Ejercicio: Mostrar Usuarios</h1>
-            <p>El objetivo de este ejercicio es crear una página web que obtenga una lista de usuarios desde una API y muestre sus nombres y correos electrónicos en una lista.</p>
-            
-            <div class="demo-area">
-                <h3>Obteniendo usuarios de JSONPlaceholder</h3>
-                <div class="code-block">
-
-                </div>
-                <div class="result-area">
-                    <h4>Lista de Usuarios:</h4>
-                    <ul id="users-list" class="user-list"></ul>
-                </div>
-                <div class="button-group">
-                    <button onclick="obtenerUsuarios()">
-                        <i class="fas fa-user-friends"></i>
-                        Obtener Usuarios
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <h1><i class="fas fa-users"></i> Simplificando la promesa</h1>
-            <p>Ahora mostramos los post en una lista dinámica en html, primero agregamos la estructura
- html donde se cargaran los datos:</p>
-            
-            <div class="demo-area">
-                <h3>Posts obtenidos de la API</h3>
-                <ul id="posts"></ul>
-                <div class="button-group">
-                    <button onclick="obtenerPosts()">
-                        <i class="fas fa-download"></i>
-                        Obtener Posts
-                    </button>
-                   <p> La función fetch se utiliza en JavaScript para realizar solicitudes HTTP a recursos remotos, como APIs.
- El código HTML y JavaScript muestra una lista de títulos de publicaciones obtenidos de una API
- externa. Dentro de un encabezado  titulado "Posts" y una lista desordenada  con el
- identificador posts, se cargan los títulos de las publicaciones.
- La función obtenerPosts utiliza fetch para recuperar los datos de la API, los convierte a JSON, y
- luego llama a la función mostrarPosts, que limpia la lista actual y agrega cada título de
- publicación como un nuevo elemento de lista . Si ocurre algún error en el proceso, se muestra
- en la consola</p> 
-                </div>
-            </div>
-            <div class="card">
-            <h1><i class="fas fa-users"></i> Usodeasync/await</h1>
-            <p>async y await son palabras clave que permiten escribir código asincrónico de manera más clara y estructurada</p>
-            <li>
-                <p> async:Seusaparadeclarar una función asincrónica.</p>
-                <p>Seusadentrodeunafunción asincrónica para esperar el resultado de una promesa.</p>
-            </li>
-            
-            <div class="demo-area">
-                <h3>Ejemplo async/await</h3>
-                <p>Vamos a escribir una función que simula una llamada a una API usando promesas y async/await</p>
-                <div class="code-block">
-                    <pre>
-async function llamadaApi() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({ mensaje: "¡Datos obtenidos correctamente!", fecha: new Date().toLocaleString() });
-        }, 1500);
-    });
-}
-
-async function llamarApiConAsyncAwait() {
-    try {
-        let datos = await llamadaApi();
-        // Mostrar el resultado en la página
-        const resultDiv = document.getElementById('resultado-async');
-        resultDiv.innerHTML = `<strong>${datos.mensaje}</strong><br>Fecha: ${datos.fecha}`;
-    } catch (error) {
-        const resultDiv = document.getElementById('resultado-async');
-        resultDiv.innerHTML = `<span style="color:red;">Error: ${error}</span>`;
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Tradicional</h3>
+                    <pre><code>function dividir(a, b) {
+    if (b === 0) {
+        return 'Error: División por cero';
     }
-}
-                    </pre>
+    return a / b;
+}</code></pre>
                 </div>
-                <div class="result-area" id="resultado-async">
-                    <!-- Aquí se mostrará el resultado de la llamada -->
+                
+                <div class="code-section">
+                    <h3>Función Flecha</h3>
+                    <pre><code>const dividirFlecha = (a, b) => 
+    b === 0 ? 'Error: División por cero' : a / b;</code></pre>
                 </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
                 <div class="button-group">
-                    <button onclick="llamarApiConAsyncAwait();">
-                        <i class="fas fa-user-friends"></i>
-                        llamarApiConAsyncAwait
+                    <button onclick="ejecutarEjercicio2()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
                     </button>
                 </div>
+                <div class="result-area" id="resultado2"></div>
             </div>
-            
-        <div>
-           <h2>Correos de Usuarios</h2>
-           <p>Lista de correos electrónicos de los usuarios obtenidos de la API:</p>
-            <div>
-            <ul id="correos-list">
-                <button onclick="mostrarCorreos();">Mostrar Correos</button>
-            </ul>
-               
-
-            </div>
-            
         </div>
+
+        <!-- Ejercicio 3: Potencia de un número -->
+        <div class="card">
+            <h1><i class="fas fa-bolt"></i> Ejercicio 3: Potencia de un número</h1>
+            <p>Calcula la potencia de un número elevado a un exponente.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Tradicional</h3>
+                    <pre><code>function potencia(base, exponente) {
+    return Math.pow(base, exponente);
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Función Flecha</h3>
+                    <pre><code>const potenciaFlecha = (base, exponente) => 
+    Math.pow(base, exponente);</code></pre>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio3()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado3"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 4: Mayor de 2 números -->
+        <div class="card">
+            <h1><i class="fas fa-arrow-up"></i> Ejercicio 4: Mayor de 2 números</h1>
+            <p>Crea una función tradicional y una función flecha para calcular el mayor de dos números.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Tradicional</h3>
+                    <pre><code>function mayor(num1, num2) {
+    if (num1 > num2) {
+        return num1;
+    } else {
+        return num2;
+    }
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Función Flecha</h3>
+                    <pre><code>const mayorFlecha = (num1, num2) => 
+    (num1 > num2) ? num1 : num2;</code></pre>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio4()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado4"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 5: Función que toma otra función como parámetro -->
+        <div class="card">
+            <h1><i class="fas fa-exchange-alt"></i> Ejercicio 5: Función de orden superior</h1>
+            <p>Este ejercicio se centra en la creación de una función que toma dos números y otra función como parámetros, demostrando el concepto de <strong>funciones de orden superior</strong>.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Principal</h3>
+                    <pre><code>function ejecutarOperacion(a, b, operacion) {
+    return operacion(a, b);
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Funciones de Ejemplo</h3>
+                    <pre><code>const sumar = (a, b) => a + b;
+const multiplicar = (a, b) => a * b;
+const restar = (a, b) => a - b;
+const dividir = (a, b) => a / b;</code></pre>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio5()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado5"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 6: Función de orden superior con map -->
+        <div class="card">
+            <h1><i class="fas fa-map"></i> Ejercicio 6: Función de orden superior con map</h1>
+            <p>Este ejercicio muestra cómo crear una función que aplica una operación a cada elemento de un array utilizando el método map.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Principal</h3>
+                    <pre><code>function aplicarOperacionArray(arr, operacion) {
+    return arr.map(operacion);
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Funciones de Ejemplo</h3>
+                    <pre><code>const duplicar = (x) => x * 2;
+const triplicar = (x) => x * 3;
+const cuadrado = (x) => x * x;
+const cubo = (x) => x * x * x;</code></pre>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio6()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado6"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 7: Closure para contar -->
+        <div class="card">
+            <h1><i class="fas fa-calculator"></i> Ejercicio 7: Closure para contar</h1>
+            <p>Este ejemplo muestra cómo usar closures para crear un contador con estado privado.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Principal</h3>
+                    <pre><code>function crearContador() {
+    let contador = 0;
+    return function() {
+        contador += 1;
+        return contador;
+    };
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Explicación</h3>
+                    <p>La función <code>crearContador</code> define una variable <code>contador</code> que no es accesible desde el exterior. Sin embargo, la función interna que se devuelve puede acceder y modificar <code>contador</code>, creando un estado privado.</p>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio7()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado7"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 8: Función que retorna otra función -->
+        <div class="card">
+            <h1><i class="fas fa-language"></i> Ejercicio 8: Función que retorna otra función</h1>
+            <p>Este ejercicio demuestra cómo crear una función que devuelve otra función, ilustrando el concepto de <strong>closures</strong> en JavaScript.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Principal</h3>
+                    <pre><code>function crearSaludo(saludo) {
+    return function(nombre) {
+        return `${saludo}, ${nombre}!`;
+    };
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Creación de Funciones</h3>
+                    <pre><code>const saludarEnEspanol = crearSaludo("Hola");
+const saludarEnIngles = crearSaludo("Hello");
+const saludarEnFrances = crearSaludo("Bonjour");</code></pre>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio8()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado8"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 9: Funciones con argumentos predeterminados -->
+        <div class="card">
+            <h1><i class="fas fa-cogs"></i> Ejercicio 9: Funciones con argumentos predeterminados</h1>
+            <p>Este ejercicio muestra cómo crear funciones que devuelven otras funciones con parámetros predefinidos.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Principal</h3>
+                    <pre><code>function crearMultiplicador(factor) {
+    return function(numero) {
+        return numero * factor;
+    };
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Creación de Funciones</h3>
+                    <pre><code>const duplicar = crearMultiplicador(2);
+const triplicar = crearMultiplicador(3);
+const cuadruplicar = crearMultiplicador(4);</code></pre>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Pruebas</h3>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio9()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado9"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 10: Juego de adivinar -->
+        <div class="card">
+            <h1><i class="fas fa-gamepad"></i> Ejercicio 10: Juego de adivinar el número</h1>
+            <p>Un juego interactivo que genera un número aleatorio y permite al usuario adivinarlo.</p>
+            
+            <div class="code-container">
+                <div class="code-section">
+                    <h3>Función Principal</h3>
+                    <pre><code>function iniciarJuegoAdivinanza(min, max) {
+    const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+    let intentos = 0;
+    
+    return function(adivinanza) {
+        intentos++;
+        if (adivinanza === numeroAleatorio) {
+            return `¡Correcto! Adivinaste en ${intentos} intentos.`;
+        } else if (adivinanza < numeroAleatorio) {
+            return "Demasiado bajo. Intenta de nuevo.";
+        } else {
+            return "Demasiado alto. Intenta de nuevo.";
+        }
+    };
+}</code></pre>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Implementación</h3>
+                    <p>Esta función utiliza closures para mantener el estado del juego (número aleatorio y contador de intentos) entre llamadas.</p>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <h3>Juega ahora</h3>
+                <p>Adivina un número entre 1 y 100:</p>
+                <input type="number" id="guessInput" min="1" max="100">
+                <div class="button-group">
+                    <button onclick="makeGuess()">
+                        <i class="fas fa-question-circle"></i>
+                        Adivinar
+                    </button>
+                    <button onclick="resetGame()">
+                        <i class="fas fa-redo"></i>
+                        Reiniciar Juego
+                    </button>
+                </div>
+                <div class="result-area" id="gameMessage"></div>
+            </div>
         </div>
     </div>
 
     <div class="footer">
-        <p>Promesas y Asincronía en JavaScript &copy; 2023</p>
+        <p>Ejercicios de Funciones en JavaScript &copy; 2023</p>
     </div>
 
     <script>
-        // Callbacks
-        function ejecutarCallback() {
-            function sumar(a, b, callback) {
-                const resultado = a + b;
-                callback(resultado);
+        // Ejercicio 1: Suma de dos números
+        function ejecutarEjercicio1() {
+            function sumar(a, b) {
+                return a + b;
             }
-
-            function mostrarResultado(resultado) {
-                document.getElementById("resultado-callback").textContent = "La suma es: " + resultado;
-            }
-
-            sumar(5, 10, mostrarResultado);
+            
+            const sumarFlecha = (a, b) => a + b;
+            
+            const resultado1 = document.getElementById('resultado1');
+            resultado1.innerHTML = `
+                <strong>sumar(5, 3):</strong> ${sumar(5, 3)}<br>
+                <strong>sumarFlecha(5, 3):</strong> ${sumarFlecha(5, 3)}
+            `;
         }
-
-        // Definimos una función que simula una operación asíncrona
-    function obtenerDatos(callback) {
-        setTimeout(() => {
-            const datos = { nombre: "Juan", edad: 30 };
-            // Llamamos al callback con los datos obtenidos
-            callback(datos);
-        }, 2000); // Simulamos un retraso de 2 segundos
-    }
-
-    // Definimos un callback que maneja los datos
-    function mostrarDatos(datos) {
-        // En vez de document.write, usamos un elemento de la página
-        const postsList = document.getElementById('posts-list');
-        postsList.innerHTML = `<li>Nombre: ${datos.nombre}, Edad: ${datos.edad}</li>`;
-    }
-
-    // Llamamos a la función obtenerDatos y pasamos mostrarDatos como callback
-    obtenerDatos(mostrarDatos);
-
-        // Async/Await
-async function obtenerPostsConAsyncAwait() {
-    // Crear una nueva promesa
-    const miPromesa = new Promise((resolve, reject) => {
-        // Simular una operación asíncrona (por ejemplo, una solicitud de red)
-        const exito = true; // Cambia a false para simular un error
-
-        if (exito) {
-            resolve("Operación exitosa!"); // Se resuelve la promesa
-        } else {
-            reject("Ocurrió un error."); // Se rechaza la promesa
-        }
-    });
-
-    // Usar la promesa con async/await
-    try {
-        const resultado = await miPromesa;
-        // Mostrar el resultado en el elemento correspondiente
-        const postsListAsync = document.getElementById('posts-list-async');
-        postsListAsync.innerHTML = `<li>${resultado}</li>`;
-    } catch (error) {
-        const postsListAsync = document.getElementById('posts-list-async');
-        postsListAsync.innerHTML = `<li style="color:red;">${error}</li>`;
-    }
-}
-   
-    function obtenerPosts() {
-    return new Promise((resolve, reject) => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la llamada a la API');
+        
+        // Ejercicio 2: División de dos números
+        function ejecutarEjercicio2() {
+            function dividir(a, b) {
+                if (b === 0) {
+                    return 'Error: División por cero';
                 }
-                return response.json();
-            })
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-    });
-}
-
-obtenerPosts()
-    .then(posts => {
-        console.log('Posts obtenidos:', posts);
-        const postsUl = document.getElementById('posts');
-        postsUl.innerHTML = ''; // Limpiamos la lista antes de agregar nuevos posts
-        posts.forEach(post => {
-            const li = document.createElement('li');
-            li.textContent = post.title;
-            postsUl.appendChild(li);
-        });
-    })
-    .catch(error => {
-        console.log('Error:', error);
-    });
-
-        // Ejercicio: Mostrar Usuarios
-        async function obtenerUsuarios() {
-            try {
-                let response = await fetch('https://jsonplaceholder.typicode.com/users');
-                if (!response.ok) {
-                    throw new Error('Error al obtener usuarios');
+                return a / b;
+            }
+            
+            const dividirFlecha = (a, b) => b === 0 ? 'Error: División por cero' : a / b;
+            
+            const resultado2 = document.getElementById('resultado2');
+            resultado2.innerHTML = `
+                <strong>dividir(8, 2):</strong> ${dividir(8, 2)}<br>
+                <strong>dividir(8, 0):</strong> ${dividir(8, 0)}<br>
+                <strong>dividirFlecha(8, 2):</strong> ${dividirFlecha(8, 2)}<br>
+                <strong>dividirFlecha(8, 0):</strong> ${dividirFlecha(8, 0)}
+            `;
+        }
+        
+        // Ejercicio 3: Potencia de un número
+        function ejecutarEjercicio3() {
+            function potencia(base, exponente) {
+                return Math.pow(base, exponente);
+            }
+            
+            const potenciaFlecha = (base, exponente) => Math.pow(base, exponente);
+            
+            const resultado3 = document.getElementById('resultado3');
+            resultado3.innerHTML = `
+                <strong>potencia(2, 3):</strong> ${potencia(2, 3)}<br>
+                <strong>potenciaFlecha(2, 3):</strong> ${potenciaFlecha(2, 3)}
+            `;
+        }
+        
+        // Ejercicio 4: Mayor de 2 números
+        function ejecutarEjercicio4() {
+            function mayor(num1, num2) {
+                if (num1 > num2) {
+                    return num1;
+                } else {
+                    return num2;
                 }
-                let usuarios = await response.json();
-                const usersUI = document.getElementById('users-list');
-                usersUI.innerHTML = '';
-                usuarios.forEach(user => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <div class="user-info">
-                            <div class="user-name">${user.name}</div>
-                            <div class="user-email">${user.email}</div>
-                        </div>
-                    `;
-                    usersUI.appendChild(li);
-                });
-            } catch (error) {
-                console.log('Error:', error);
             }
+            
+            const mayorFlecha = (num1, num2) => (num1 > num2) ? num1 : num2;
+            
+            const resultado4 = document.getElementById('resultado4');
+            resultado4.innerHTML = `
+                <strong>mayor(5, 10):</strong> ${mayor(5, 10)}<br>
+                <strong>mayorFlecha(5, 10):</strong> ${mayorFlecha(5, 10)}
+            `;
         }
-        async function llamarApiConAsyncAwait() {
-            try {
-            let datos = await llamadaApi();
-            console.log(datos);
-            } catch (error) {
-            console.log('Error:', error);
+        
+        // Ejercicio 5: Función de orden superior
+        function ejecutarEjercicio5() {
+            function ejecutarOperacion(a, b, operacion) {
+                return operacion(a, b);
             }
-        // Función para mostrar los posts en la lista HTML
-        function mostrarPosts(posts) {
-            const postsUl = document.getElementById('posts');
-            postsUl.innerHTML = '';
-            posts.forEach(post => {
-                const li = document.createElement('li');
-                li.textContent = post.title;
-                postsUl.appendChild(li);
-            });
+            
+            const sumar = (a, b) => a + b;
+            const multiplicar = (a, b) => a * b;
+            const restar = (a, b) => a - b;
+            const dividir = (a, b) => a / b;
+            
+            const resultado5 = document.getElementById('resultado5');
+            resultado5.innerHTML = `
+                <strong>ejecutarOperacion(5, 3, sumar):</strong> ${ejecutarOperacion(5, 3, sumar)}<br>
+                <strong>ejecutarOperacion(5, 3, multiplicar):</strong> ${ejecutarOperacion(5, 3, multiplicar)}<br>
+                <strong>ejecutarOperacion(5, 3, restar):</strong> ${ejecutarOperacion(5, 3, restar)}<br>
+                <strong>ejecutarOperacion(10, 2, dividir):</strong> ${ejecutarOperacion(10, 2, dividir)}
+            `;
         }
-
-        // Async/Await para obtener y mostrar los posts en la página
-        async function obtenerPostsConAsyncAwait() {
-            try {
-                let response = await fetch('https://jsonplaceholder.typicode.com/posts');
-                if (!response.ok) {
-                    throw new Error('Error en la llamada a la API');
+        
+        // Ejercicio 6: Función de orden superior con map
+        function ejecutarEjercicio6() {
+            function aplicarOperacionArray(arr, operacion) {
+                return arr.map(operacion);
+            }
+            
+            const duplicar = (x) => x * 2;
+            const triplicar = (x) => x * 3;
+            const cuadrado = (x) => x * x;
+            const cubo = (x) => x * x * x;
+            
+            const numeros = [1, 2, 3, 4];
+            const resultado6 = document.getElementById('resultado6');
+            resultado6.innerHTML = `
+                <strong>Array original:</strong> [${numeros.join(', ')}]<br>
+                <strong>Duplicar:</strong> [${aplicarOperacionArray(numeros, duplicar).join(', ')}]<br>
+                <strong>Triplicar:</strong> [${aplicarOperacionArray(numeros, triplicar).join(', ')}]<br>
+                <strong>Cuadrado:</strong> [${aplicarOperacionArray(numeros, cuadrado).join(', ')}]<br>
+                <strong>Cubo:</strong> [${aplicarOperacionArray(numeros, cubo).join(', ')}]
+            `;
+        }
+        
+        // Ejercicio 7: Closure para contar
+        function ejecutarEjercicio7() {
+            function crearContador() {
+                let contador = 0;
+                return function() {
+                    contador += 1;
+                    return contador;
+                };
+            }
+            
+            const contador = crearContador();
+            const resultado7 = document.getElementById('resultado7');
+            resultado7.innerHTML = `
+                <strong>contador():</strong> ${contador()}<br>
+                <strong>contador():</strong> ${contador()}<br>
+                <strong>contador():</strong> ${contador()}
+            `;
+        }
+        
+        // Ejercicio 8: Función que retorna otra función
+        function ejecutarEjercicio8() {
+            function crearSaludo(saludo) {
+                return function(nombre) {
+                    return `${saludo}, ${nombre}!`;
+                };
+            }
+            
+            const saludarEnEspanol = crearSaludo("Hola");
+            const saludarEnIngles = crearSaludo("Hello");
+            const saludarEnFrances = crearSaludo("Bonjour");
+            
+            const resultado8 = document.getElementById('resultado8');
+            resultado8.innerHTML = `
+                <strong>saludarEnEspanol('Juan'):</strong> ${saludarEnEspanol('Juan')}<br>
+                <strong>saludarEnIngles('John'):</strong> ${saludarEnIngles('John')}<br>
+                <strong>saludarEnFrances('Pierre'):</strong> ${saludarEnFrances('Pierre')}
+            `;
+        }
+        
+        // Ejercicio 9: Funciones con argumentos predeterminados
+        function ejecutarEjercicio9() {
+            function crearMultiplicador(factor) {
+                return function(numero) {
+                    return numero * factor;
+                };
+            }
+            
+            const duplicar = crearMultiplicador(2);
+            const triplicar = crearMultiplicador(3);
+            const cuadruplicar = crearMultiplicador(4);
+            
+            const resultado9 = document.getElementById('resultado9');
+            resultado9.innerHTML = `
+                <strong>duplicar(5):</strong> ${duplicar(5)}<br>
+                <strong>triplicar(5):</strong> ${triplicar(5)}<br>
+                <strong>cuadruplicar(5):</strong> ${cuadruplicar(5)}
+            `;
+        }
+        
+        // Ejercicio 10: Juego de adivinar
+        let juegoAdivinanza;
+        
+        function iniciarJuego() {
+            juegoAdivinanza = iniciarJuegoAdivinanza(1, 100);
+            document.getElementById('gameMessage').textContent = "¡Juego iniciado! Adivina un número entre 1 y 100.";
+        }
+        
+        function iniciarJuegoAdivinanza(min, max) {
+            const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+            let intentos = 0;
+            
+            return function(adivinanza) {
+                intentos++;
+                if (adivinanza === numeroAleatorio) {
+                    return `¡Correcto! Adivinaste en ${intentos} intentos. El número era ${numeroAleatorio}.`;
+                } else if (adivinanza < numeroAleatorio) {
+                    return "Demasiado bajo. Intenta de nuevo.";
+                } else {
+                    return "Demasiado alto. Intenta de nuevo.";
                 }
-                let posts = await response.json();
-                mostrarPosts(posts); // Mostrar los posts en la lista HTML
-            } catch (error) {
-                console.log('Error:', error);
-            }
+            };
         }
-    }
-    const obtenerUsuarios1 = () => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(data => mostrarUsuarios(data))
-        .catch(error => console.log('Error:', error));
-};
-
-// Función para mostrar los usuarios en el HTML
-const mostrarUsuarios = (users) => {
-    const usersUL = document.getElementById('users');
-    usersUL.innerHTML = ''; // Limpiamos la lista antes de agregar nuevos usuarios
-    users.forEach(user => {
-        const li = document.createElement('li');
-        li.textContent = user.name;
-        usersUL.appendChild(li);
-    });
-};
-function mostrarCorreos() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => {
-            const correosUl = document.getElementById('correos-list');
-            correosUl.innerHTML = '';
-            users.forEach(user => {
-                const li = document.createElement('li');
-                li.textContent = user.email;
-                correosUl.appendChild(li);
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
-
-// Llama a la función para mostrar los correos
-     
+        
+        function makeGuess() {
+            if (!juegoAdivinanza) {
+                iniciarJuego();
+            }
+            
+            const guessInput = document.getElementById('guessInput');
+            const guess = parseInt(guessInput.value);
+            const messageElement = document.getElementById('gameMessage');
+            
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                messageElement.textContent = "Por favor, ingresa un número válido entre 1 y 100.";
+                return;
+            }
+            
+            const result = juegoAdivinanza(guess);
+            messageElement.textContent = result;
+            
+            if (result.includes("¡Correcto!")) {
+                // Juego terminado
+                juegoAdivinanza = null;
+            }
+            
+            guessInput.value = "";
+            guessInput.focus();
+        }
+        
+        function resetGame() {
+            iniciarJuego();
+            document.getElementById('guessInput').value = "";
+        }
+        
+        // Iniciar el juego al cargar la página
+        window.onload = iniciarJuego;
     </script>
-    
 </body>
 </html>

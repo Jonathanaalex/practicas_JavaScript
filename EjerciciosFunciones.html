@@ -3,266 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios de Funciones JavaScript</title>
+    <title>Ejercicios de Funciones en JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            font-family: 'Segoe UI', Arial, sans-serif;
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #2563eb;
+            --accent-color: #60a5fa;
+            --text-color: #1f2937;
+            --light-text: #6b7280;
+            --background: #f9fafb;
+            --card-bg: #ffffff;
+            --header-height: 70px;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+            padding: 20px;
+        }
+        
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(106,17,203,0.12);
-            padding: 32px 24px 24px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        header h1 {
-            color: #6a11cb;
-            margin-bottom: 8px;
-            font-size: 2.2em;
-            font-weight: 700;
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        .subtitle {
-            color: #2575fc;
-            font-size: 1.1em;
-            margin-bottom: 24px;
+        
+        .page-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
         }
-        .exercise {
-            background: #f3f7fd;
-            border-radius: 10px;
-            padding: 18px 20px;
-            border-left: 5px solid #6a11cb;
-            margin-bottom: 28px;
-            box-shadow: 0 2px 8px rgba(106,17,203,0.06);
+        
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .exercise h2 {
-            color: #2575fc;
-            margin-bottom: 8px;
-            font-size: 1.3em;
+        
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
         }
+        
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h1 i {
+            color: var(--secondary-color);
+        }
+        
+        .card p {
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
         .code-container {
             display: flex;
-            gap: 24px;
-            margin-top: 12px;
-            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
         }
+        
         .code-section {
             flex: 1;
+            min-width: 300px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--accent-color);
         }
+        
         .code-section h3 {
-            margin-bottom: 8px;
-            color: #6a11cb;
-            font-size: 1em;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
         }
+        
         pre {
-            background: #282c34;
+            background-color: #282c34;
             color: #abb2bf;
-            padding: 14px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 6px;
             overflow-x: auto;
-            font-family: 'Fira Code', 'Consolas', monospace;
-            font-size: 1em;
-            margin: 0;
+            font-family: 'Fira Code', monospace;
+            tab-size: 4;
         }
-        .tests {
-            background: #e8f4fc;
-            padding: 14px 18px;
+        
+        .demo-area {
+            background: #f8fafc;
+            padding: 20px;
             border-radius: 10px;
-            margin-top: 18px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
         }
-        .tests h3 {
-            color: #2575fc;
-            margin-bottom: 8px;
-            font-size: 1em;
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
-        .result {
-            padding: 10px;
-            background: #f8f9fa;
+        
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
             border-radius: 8px;
-            margin-top: 10px;
-            font-family: 'Consolas', monospace;
-            font-size: 1em;
-        }
-        .btn-run {
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-            color: #fff;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 10px;
-            font-size: 1em;
-            font-weight: 500;
-            box-shadow: 0 2px 8px rgba(106,17,203,0.08);
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn-run:hover {
-            background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+        
+        button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
         }
-        .game-container {
-            background: #e8f4fc;
-            padding: 18px 20px;
-            border-radius: 10px;
-            margin-top: 18px;
-        }
-        .game-container input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-right: 10px;
-            font-size: 1em;
-        }
-        .game-container button {
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-            color: #fff;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            box-shadow: 0 2px 8px rgba(106,17,203,0.08);
-            transition: background 0.3s;
-        }
-        .game-container button:hover {
-            background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
-        }
-        .game-message {
+        
+        .result-area {
+            background: #ecfdf5;
+            padding: 15px;
+            border-radius: 8px;
             margin-top: 15px;
-            padding: 10px;
-            background: #fff;
-            border-radius: 8px;
-            font-size: 1em;
+            border: 1px solid var(--accent-color);
         }
-        footer {
+        
+        .footer {
             text-align: center;
+            color: white;
             margin-top: 50px;
             padding: 20px;
-            color: #777;
-            font-size: 1em;
         }
-        @media (max-width: 900px) {
-            .container {
-                padding: 16px 8px;
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
             }
+            
+            .card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card {
+                padding: 20px;
+            }
+            
             .code-container {
                 flex-direction: column;
-                gap: 12px;
-            }
-        }
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.3em;
-            }
-            .exercise h2 {
-                font-size: 1em;
-            }
-            .container {
-                padding: 8px 2px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Ejercicios de Funciones JavaScript</h1>
-            <p class="subtitle">Funciones tradicionales, flecha y de orden superior</p>
-        </header>
+        <div class="header">
+            <h1 class="page-title">Ejercicios de Funciones en JavaScript</h1>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    Ir a la Página Principal
+                </a>
+                <a href="EjerciciosFunciones.html" class="nav-link">
+                    <i class="fas fa-functions"></i>
+                    Ir a Ejercicios de Funciones
+                </a>
+                <a href="ManejoAreglos.html" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    Ir a manejo de arreglos
+                </a>
+            </nav>
+        </div>
 
         <!-- Ejercicio 1: Suma de dos números -->
-        <section class="exercise" id="exercise1">
-            <h2>Ejercicio 1: Suma de dos números</h2>
-            <p>Crear funciones para sumar dos números.</p>
-            <button class="btn-run" onclick="runExercise1()">Ejecutar Pruebas</button>
-            <div class="result" id="result1"></div>
-        </section>
-
-        <!-- Ejercicio 2: División de dos números -->
-        <section class="exercise" id="exercise2">
-            <h2>Ejercicio 2: División de dos números</h2>
-            <p>Manejo de división por cero.</p>
-            <button class="btn-run" onclick="runExercise2()">Ejecutar Pruebas</button>
-            <div class="result" id="result2"></div>
-        </section>
-
-        <!-- Ejercicio 3: Potencia de un número -->
-        <section class="exercise" id="exercise3">
-            <h2>Ejercicio 3: Potencia de un número</h2>
-            <p>Calcula la potencia de un número.</p>
-            <button class="btn-run" onclick="runExercise3()">Ejecutar Pruebas</button>
-            <div class="result" id="result3"></div>
-        </section>
-
-        <!-- Ejercicio 4: Mayor de 2 números -->
-        <section class="exercise" id="exercise4">
-            <h2>Ejercicio 4: Mayor de 2 números</h2>
-            <p>Calcula el mayor de dos números.</p>
-            <button class="btn-run" onclick="runExercise4()">Ejecutar Pruebas</button>
-            <div class="result" id="result4"></div>
-        </section>
-
-        <!-- Ejercicio 5: Función de orden superior -->
-        <section class="exercise" id="exercise5"></section>
-            <h2>Ejercicio 5: Función de orden superior</h2>
-            <p>Función que toma otra función como parámetro.</p>
-            <button class="btn-run" onclick="runExercise5()">Ejecutar Pruebas</button>
-            <div class="result" id="result5"></div>
-        </section>
-
-        <!-- Ejercicio 6: Función de orden superior con map -->
-        <section class="exercise" id="exercise6">
-            <h2>Ejercicio 6: Función de orden superior con map</h2>
-            <p>Aplica una operación a cada elemento de un array.</p>
-            <button class="btn-run" onclick="runExercise6()">Ejecutar Pruebas</button>
-            <div class="result" id="result6"></div>
-        </section>
-
-        <!-- Ejercicio 7: Closure para contar -->
-        <section class="exercise" id="exercise7">
-            <h2>Ejercicio 7: Closure para contar</h2>
-            <p>Closure para crear un contador con estado privado.</p>
-            <button class="btn-run" onclick="runExercise7()">Ejecutar Pruebas</button>
-            <div class="result" id="result7"></div>
-        </section>
-
-        <!-- Ejercicio 8: Función que retorna otra función -->
-        <section class="exercise" id="exercise8">
-            <h2>Ejercicio 8: Función que retorna otra función</h2>
-            <p>Función que devuelve otra función (closure).</p>
-            <button class="btn-run" onclick="runExercise8()">Ejecutar Pruebas</button>
-            <div class="result" id="result8"></div>
-        </section>
-
-        <!-- Ejercicio 9: Funciones con argumentos predeterminados -->
-        <section class="exercise" id="exercise9">
-            <h2>Ejercicio 9: Funciones con argumentos predeterminados</h2>
-            <p>Este ejercicio muestra cómo crear funciones que devuelven otras funciones con parámetros predefinidos.</p>
-            <button class="btn-run" onclick="runExercise9()">Ejecutar Pruebas</button>
-            <div class="result" id="result9"></div>
-        </section>
-
-        <!-- Ejercicio 10: Juego de adivinar -->
-        <section class="exercise" id="exercise10">
-            <h2>Ejercicio 10: Juego de adivinar el número</h2>
-            <p>Un juego interactivo que genera un número aleatorio y permite al usuario adivinarlo.</p>
-            <div class="game-container"></div>
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Ejercicios de Funciones JavaScript</h1>
-            <p class="subtitle">Funciones tradicionales, flecha y de orden superior</p>
-        </header>
-        
-        <!-- Ejercicio 1: Suma de dos números -->
-        <section class="exercise" id="exercise1">
-            <h2>Ejercicio 1: Suma de dos números</h2>
+        <div class="card">
+            <h1><i class="fas fa-plus"></i> Ejercicio 1: Suma de dos números</h1>
             <p>Este ejercicio se centra en la creación de funciones para sumar dos números, utilizando tanto la sintaxis de función tradicional como la de función flecha.</p>
             
             <div class="code-container">
@@ -279,16 +271,21 @@
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise1()">Ejecutar Pruebas</button>
-                <div class="result" id="result1"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio1()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado1"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 2: División de dos números -->
-        <section class="exercise" id="exercise2">
-            <h2>Ejercicio 2: División de dos números</h2>
+        <div class="card">
+            <h1><i class="fas fa-divide"></i> Ejercicio 2: División de dos números</h1>
             <p>Manejando el caso de división por cero.</p>
             
             <div class="code-container">
@@ -309,16 +306,21 @@
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise2()">Ejecutar Pruebas</button>
-                <div class="result" id="result2"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio2()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado2"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 3: Potencia de un número -->
-        <section class="exercise" id="exercise3">
-            <h2>Ejercicio 3: Potencia de un número</h2>
+        <div class="card">
+            <h1><i class="fas fa-bolt"></i> Ejercicio 3: Potencia de un número</h1>
             <p>Calcula la potencia de un número elevado a un exponente.</p>
             
             <div class="code-container">
@@ -336,16 +338,21 @@
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise3()">Ejecutar Pruebas</button>
-                <div class="result" id="result3"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio3()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado3"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 4: Mayor de 2 números -->
-        <section class="exercise" id="exercise4">
-            <h2>Ejercicio 4: Mayor de 2 números</h2>
+        <div class="card">
+            <h1><i class="fas fa-arrow-up"></i> Ejercicio 4: Mayor de 2 números</h1>
             <p>Crea una función tradicional y una función flecha para calcular el mayor de dos números.</p>
             
             <div class="code-container">
@@ -367,17 +374,22 @@
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise4()">Ejecutar Pruebas</button>
-                <div class="result" id="result4"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio4()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado4"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 5: Función que toma otra función como parámetro -->
-        <section class="exercise" id="exercise5">
-            <h2>Ejercicio 5: Función de orden superior</h2>
-            <p>Este ejercicio se centra en la creación de una función que toma dos números y otra función como parámetros, demostrando el concepto de <em>funciones de orden superior</em>.</p>
+        <div class="card">
+            <h1><i class="fas fa-exchange-alt"></i> Ejercicio 5: Función de orden superior</h1>
+            <p>Este ejercicio se centra en la creación de una función que toma dos números y otra función como parámetros, demostrando el concepto de <strong>funciones de orden superior</strong>.</p>
             
             <div class="code-container">
                 <div class="code-section">
@@ -396,16 +408,21 @@ const dividir = (a, b) => a / b;</code></pre>
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise5()">Ejecutar Pruebas</button>
-                <div class="result" id="result5"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio5()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado5"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 6: Función de orden superior con map -->
-        <section class="exercise" id="exercise6">
-            <h2>Ejercicio 6: Función de orden superior con map</h2>
+        <div class="card">
+            <h1><i class="fas fa-map"></i> Ejercicio 6: Función de orden superior con map</h1>
             <p>Este ejercicio muestra cómo crear una función que aplica una operación a cada elemento de un array utilizando el método map.</p>
             
             <div class="code-container">
@@ -425,16 +442,21 @@ const cubo = (x) => x * x * x;</code></pre>
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise6()">Ejecutar Pruebas</button>
-                <div class="result" id="result6"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio6()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado6"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 7: Closure para contar -->
-        <section class="exercise" id="exercise7">
-            <h2>Ejercicio 7: Closure para contar</h2>
+        <div class="card">
+            <h1><i class="fas fa-calculator"></i> Ejercicio 7: Closure para contar</h1>
             <p>Este ejemplo muestra cómo usar closures para crear un contador con estado privado.</p>
             
             <div class="code-container">
@@ -455,16 +477,21 @@ const cubo = (x) => x * x * x;</code></pre>
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise7()">Ejecutar Pruebas</button>
-                <div class="result" id="result7"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio7()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado7"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 8: Función que retorna otra función -->
-        <section class="exercise" id="exercise8">
-            <h2>Ejercicio 8: Función que retorna otra función</h2>
+        <div class="card">
+            <h1><i class="fas fa-language"></i> Ejercicio 8: Función que retorna otra función</h1>
             <p>Este ejercicio demuestra cómo crear una función que devuelve otra función, ilustrando el concepto de <strong>closures</strong> en JavaScript.</p>
             
             <div class="code-container">
@@ -485,16 +512,21 @@ const saludarEnFrances = crearSaludo("Bonjour");</code></pre>
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise8()">Ejecutar Pruebas</button>
-                <div class="result" id="result8"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio8()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado8"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 9: Funciones con argumentos predeterminados -->
-        <section class="exercise" id="exercise9">
-            <h2>Ejercicio 9: Funciones con argumentos predeterminados</h2>
+        <div class="card">
+            <h1><i class="fas fa-cogs"></i> Ejercicio 9: Funciones con argumentos predeterminados</h1>
             <p>Este ejercicio muestra cómo crear funciones que devuelven otras funciones con parámetros predefinidos.</p>
             
             <div class="code-container">
@@ -515,23 +547,41 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
                 </div>
             </div>
             
-            <div class="tests">
+            <div class="demo-area">
                 <h3>Pruebas</h3>
-                <button class="btn-run" onclick="runExercise9()">Ejecutar Pruebas</button>
-                <div class="result" id="result9"></div>
+                <div class="button-group">
+                    <button onclick="ejecutarEjercicio9()">
+                        <i class="fas fa-play"></i>
+                        Ejecutar Pruebas
+                    </button>
+                </div>
+                <div class="result-area" id="resultado9"></div>
             </div>
-        </section>
-        
+        </div>
+
         <!-- Ejercicio 10: Juego de adivinar -->
-        <section class="exercise" id="exercise10">
-            <h2>Ejercicio 10: Juego de adivinar el número</h2>
+        <div class="card">
+            <h1><i class="fas fa-gamepad"></i> Ejercicio 10: Juego de adivinar el número</h1>
             <p>Un juego interactivo que genera un número aleatorio y permite al usuario adivinarlo.</p>
             
             <div class="code-container">
                 <div class="code-section">
                     <h3>Función Principal</h3>
-                   
-</code></pre>
+                    <pre><code>function iniciarJuegoAdivinanza(min, max) {
+    const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+    let intentos = 0;
+    
+    return function(adivinanza) {
+        intentos++;
+        if (adivinanza === numeroAleatorio) {
+            return `¡Correcto! Adivinaste en ${intentos} intentos.`;
+        } else if (adivinanza < numeroAleatorio) {
+            return "Demasiado bajo. Intenta de nuevo.";
+        } else {
+            return "Demasiado alto. Intenta de nuevo.";
+        }
+    };
+}</code></pre>
                 </div>
                 
                 <div class="code-section">
@@ -540,50 +590,58 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
                 </div>
             </div>
             
-            <div class="game-container">
+            <div class="demo-area">
                 <h3>Juega ahora</h3>
                 <p>Adivina un número entre 1 y 100:</p>
                 <input type="number" id="guessInput" min="1" max="100">
-                <button onclick="makeGuess()">Adivinar</button>
-                <div class="game-message" id="gameMessage"></div>
-                <button class="btn-run" onclick="resetGame()" style="margin-top: 15px;">Reiniciar Juego</button>
+                <div class="button-group">
+                    <button onclick="makeGuess()">
+                        <i class="fas fa-question-circle"></i>
+                        Adivinar
+                    </button>
+                    <button onclick="resetGame()">
+                        <i class="fas fa-redo"></i>
+                        Reiniciar Juego
+                    </button>
+                </div>
+                <div class="result-area" id="gameMessage"></div>
             </div>
-        </section>
-        
-        <footer>
-            <p>Ejercicios de Funciones JavaScript - &copy; 2023</p>
-        </footer>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Ejercicios de Funciones en JavaScript &copy; 2023</p>
     </div>
 
     <script>
         // Ejercicio 1: Suma de dos números
-        function sumar(a, b) {
-            return a + b;
-        }
-        
-        const sumarFlecha = (a, b) => a + b;
-        
-        function runExercise1() {
-            const resultElement = document.getElementById('result1');
-            resultElement.innerHTML = `
+        function ejecutarEjercicio1() {
+            function sumar(a, b) {
+                return a + b;
+            }
+            
+            const sumarFlecha = (a, b) => a + b;
+            
+            const resultado1 = document.getElementById('resultado1');
+            resultado1.innerHTML = `
                 <strong>sumar(5, 3):</strong> ${sumar(5, 3)}<br>
                 <strong>sumarFlecha(5, 3):</strong> ${sumarFlecha(5, 3)}
             `;
         }
         
         // Ejercicio 2: División de dos números
-        function dividir(a, b) {
-            if (b === 0) {
-                return 'Error: División por cero';
+        function ejecutarEjercicio2() {
+            function dividir(a, b) {
+                if (b === 0) {
+                    return 'Error: División por cero';
+                }
+                return a / b;
             }
-            return a / b;
-        }
-        
-        const dividirFlecha = (a, b) => b === 0 ? 'Error: División por cero' : a / b;
-        
-        function runExercise2() {
-            const resultElement = document.getElementById('result2');
-            resultElement.innerHTML = `
+            
+            const dividirFlecha = (a, b) => b === 0 ? 'Error: División por cero' : a / b;
+            
+            const resultado2 = document.getElementById('resultado2');
+            resultado2.innerHTML = `
                 <strong>dividir(8, 2):</strong> ${dividir(8, 2)}<br>
                 <strong>dividir(8, 0):</strong> ${dividir(8, 0)}<br>
                 <strong>dividirFlecha(8, 2):</strong> ${dividirFlecha(8, 2)}<br>
@@ -592,73 +650,73 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
         }
         
         // Ejercicio 3: Potencia de un número
-        function potencia(base, exponente) {
-            return Math.pow(base, exponente);
-        }
-        
-        const potenciaFlecha = (base, exponente) => Math.pow(base, exponente);
-        
-        function runExercise3() {
-            const resultElement = document.getElementById('result3');
-            resultElement.innerHTML = `
+        function ejecutarEjercicio3() {
+            function potencia(base, exponente) {
+                return Math.pow(base, exponente);
+            }
+            
+            const potenciaFlecha = (base, exponente) => Math.pow(base, exponente);
+            
+            const resultado3 = document.getElementById('resultado3');
+            resultado3.innerHTML = `
                 <strong>potencia(2, 3):</strong> ${potencia(2, 3)}<br>
                 <strong>potenciaFlecha(2, 3):</strong> ${potenciaFlecha(2, 3)}
             `;
         }
         
         // Ejercicio 4: Mayor de 2 números
-        function mayor(num1, num2) {
-            if (num1 > num2) {
-                return num1;
-            } else {
-                return num2;
+        function ejecutarEjercicio4() {
+            function mayor(num1, num2) {
+                if (num1 > num2) {
+                    return num1;
+                } else {
+                    return num2;
+                }
             }
-        }
-        
-        const mayorFlecha = (num1, num2) => (num1 > num2) ? num1 : num2;
-        
-        function runExercise4() {
-            const resultElement = document.getElementById('result4');
-            resultElement.innerHTML = `
+            
+            const mayorFlecha = (num1, num2) => (num1 > num2) ? num1 : num2;
+            
+            const resultado4 = document.getElementById('resultado4');
+            resultado4.innerHTML = `
                 <strong>mayor(5, 10):</strong> ${mayor(5, 10)}<br>
                 <strong>mayorFlecha(5, 10):</strong> ${mayorFlecha(5, 10)}
             `;
         }
         
         // Ejercicio 5: Función de orden superior
-        function ejecutarOperacion(a, b, operacion) {
-            return operacion(a, b);
-        }
-        
-        const sumarOp = (a, b) => a + b;
-        const multiplicar = (a, b) => a * b;
-        const restar = (a, b) => a - b;
-        const dividirOp = (a, b) => a / b;
-        
-        function runExercise5() {
-            const resultElement = document.getElementById('result5');
-            resultElement.innerHTML = `
-                <strong>ejecutarOperacion(5, 3, sumarOp):</strong> ${ejecutarOperacion(5, 3, sumarOp)}<br>
+        function ejecutarEjercicio5() {
+            function ejecutarOperacion(a, b, operacion) {
+                return operacion(a, b);
+            }
+            
+            const sumar = (a, b) => a + b;
+            const multiplicar = (a, b) => a * b;
+            const restar = (a, b) => a - b;
+            const dividir = (a, b) => a / b;
+            
+            const resultado5 = document.getElementById('resultado5');
+            resultado5.innerHTML = `
+                <strong>ejecutarOperacion(5, 3, sumar):</strong> ${ejecutarOperacion(5, 3, sumar)}<br>
                 <strong>ejecutarOperacion(5, 3, multiplicar):</strong> ${ejecutarOperacion(5, 3, multiplicar)}<br>
                 <strong>ejecutarOperacion(5, 3, restar):</strong> ${ejecutarOperacion(5, 3, restar)}<br>
-                <strong>ejecutarOperacion(10, 2, dividirOp):</strong> ${ejecutarOperacion(10, 2, dividirOp)}
+                <strong>ejecutarOperacion(10, 2, dividir):</strong> ${ejecutarOperacion(10, 2, dividir)}
             `;
         }
         
         // Ejercicio 6: Función de orden superior con map
-        function aplicarOperacionArray(arr, operacion) {
-            return arr.map(operacion);
-        }
-        
-        const duplicar = (x) => x * 2;
-        const triplicar = (x) => x * 3;
-        const cuadrado = (x) => x * x;
-        const cubo = (x) => x * x * x;
-        
-        function runExercise6() {
+        function ejecutarEjercicio6() {
+            function aplicarOperacionArray(arr, operacion) {
+                return arr.map(operacion);
+            }
+            
+            const duplicar = (x) => x * 2;
+            const triplicar = (x) => x * 3;
+            const cuadrado = (x) => x * x;
+            const cubo = (x) => x * x * x;
+            
             const numeros = [1, 2, 3, 4];
-            const resultElement = document.getElementById('result6');
-            resultElement.innerHTML = `
+            const resultado6 = document.getElementById('resultado6');
+            resultado6.innerHTML = `
                 <strong>Array original:</strong> [${numeros.join(', ')}]<br>
                 <strong>Duplicar:</strong> [${aplicarOperacionArray(numeros, duplicar).join(', ')}]<br>
                 <strong>Triplicar:</strong> [${aplicarOperacionArray(numeros, triplicar).join(', ')}]<br>
@@ -668,18 +726,18 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
         }
         
         // Ejercicio 7: Closure para contar
-        function crearContador() {
-            let contador = 0;
-            return function() {
-                contador += 1;
-                return contador;
-            };
-        }
-        
-        function runExercise7() {
+        function ejecutarEjercicio7() {
+            function crearContador() {
+                let contador = 0;
+                return function() {
+                    contador += 1;
+                    return contador;
+                };
+            }
+            
             const contador = crearContador();
-            const resultElement = document.getElementById('result7');
-            resultElement.innerHTML = `
+            const resultado7 = document.getElementById('resultado7');
+            resultado7.innerHTML = `
                 <strong>contador():</strong> ${contador()}<br>
                 <strong>contador():</strong> ${contador()}<br>
                 <strong>contador():</strong> ${contador()}
@@ -687,19 +745,19 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
         }
         
         // Ejercicio 8: Función que retorna otra función
-        function crearSaludo(saludo) {
-            return function(nombre) {
-                return `${saludo}, ${nombre}!`;
-            };
-        }
-        
-        function runExercise8() {
+        function ejecutarEjercicio8() {
+            function crearSaludo(saludo) {
+                return function(nombre) {
+                    return `${saludo}, ${nombre}!`;
+                };
+            }
+            
             const saludarEnEspanol = crearSaludo("Hola");
             const saludarEnIngles = crearSaludo("Hello");
             const saludarEnFrances = crearSaludo("Bonjour");
             
-            const resultElement = document.getElementById('result8');
-            resultElement.innerHTML = `
+            const resultado8 = document.getElementById('resultado8');
+            resultado8.innerHTML = `
                 <strong>saludarEnEspanol('Juan'):</strong> ${saludarEnEspanol('Juan')}<br>
                 <strong>saludarEnIngles('John'):</strong> ${saludarEnIngles('John')}<br>
                 <strong>saludarEnFrances('Pierre'):</strong> ${saludarEnFrances('Pierre')}
@@ -707,19 +765,19 @@ const cuadruplicar = crearMultiplicador(4);</code></pre>
         }
         
         // Ejercicio 9: Funciones con argumentos predeterminados
-        function crearMultiplicador(factor) {
-            return function(numero) {
-                return numero * factor;
-            };
-        }
-        
-        function runExercise9() {
+        function ejecutarEjercicio9() {
+            function crearMultiplicador(factor) {
+                return function(numero) {
+                    return numero * factor;
+                };
+            }
+            
             const duplicar = crearMultiplicador(2);
             const triplicar = crearMultiplicador(3);
             const cuadruplicar = crearMultiplicador(4);
             
-            const resultElement = document.getElementById('result9');
-            resultElement.innerHTML = `
+            const resultado9 = document.getElementById('resultado9');
+            resultado9.innerHTML = `
                 <strong>duplicar(5):</strong> ${duplicar(5)}<br>
                 <strong>triplicar(5):</strong> ${triplicar(5)}<br>
                 <strong>cuadruplicar(5):</strong> ${cuadruplicar(5)}

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Módulos en JavaScript</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            color: #2575fc;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: #6a11cb;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .exercise {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .exercise:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .result {
+            background-color: #eef5ff;
+            border-left: 4px solid #2575fc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+            display: none;
+        }
+        
+        .result h4 {
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+        
+        .result-content {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            white-space: pre-wrap;
+        }
+        
+        .file-structure {
+            background-color: #eef5ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ejercicios de Módulos en JavaScript</h1>
+            <p>Aprende a usar módulos en JavaScript con estos ejercicios prácticos</p>
+            <nav>
+                <a href="index.html" class="btn">← Regresar al índice</a>
+            </nav>
+        </header>
+        
+        <section class="intro">
+            <h2>¿Qué son los módulos en JavaScript?</h2>
+            <p>Los módulos en JavaScript permiten dividir el código en archivos separados, lo que facilita el mantenimiento, la reutilización y la organización del código. Con los módulos, puedes exportar funciones, objetos o valores primitivos desde un archivo e importarlos en otro.</p>
+        </section>
+        
+        <div class="exercise">
+            <h2>Ejercicio 1: Módulos Básicos</h2>
+            <p>Este ejercicio demuestra cómo crear y usar módulos básicos con exportaciones nombradas y por defecto.</p>
+            
+            <div class="file-structure">
+                miproyecto/<br>
+                │<br>
+                ├── index.html<br>
+                ├── main.js<br>
+                ├── saludo.js<br>
+                ├── despedida.js<br>
+                └── mensaje.js<br>
+            </div>
+            
+            <h3>saludo.js</h3>
+            <div class="code-block">
+// Exportación nombrada
+export const saludo = () => {
+    return "¡Hola, Mundo!";
+};
+            </div>
+            
+            <h3>despedida.js</h3>
+            <div class="code-block">
+// Exportación nombrada
+export const despedida = () => {
+    return "¡Adiós, Mundo!";
+};
+            </div>
+            
+            <h3>mensaje.js</h3>
+            <div class="code-block">
+// Exportación por defecto
+const mensaje = "Mensaje por defecto";
+export default mensaje;
+            </div>
+            
+            <h3>main.js</h3>
+            <div class="code-block">
+// Importar las funciones y el mensaje
+import { saludo } from './saludo.js';
+import { despedida } from './despedida.js';
+import mensaje from './mensaje.js';
+
+// Ejecutar las funciones y mostrar resultados
+console.log(saludo());
+console.log(despedida());
+console.log(mensaje);
+            </div>
+            
+            <button class="btn" onclick="runExercise1()">Ejecutar Ejercicio 1</button>
+            
+            <div class="result" id="result1">
+                <h4>Resultados del Ejercicio 1:</h4>
+                <div class="result-content" id="result-content1"></div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h2>Ejercicio 2: Módulo de Operaciones Matemáticas</h2>
+            <p>Este ejercicio muestra cómo crear un módulo con funciones matemáticas y cómo importarlas.</p>
+            
+            <h3>math.js</h3>
+            <div class="code-block">
+// math.js - Módulo de operaciones matemáticas
+export const suma = (a, b) => a + b;
+export const resta = (a, b) => a - b;
+export const multiplicacion = (a, b) => a * b;
+export const division = (a, b) => a / b;
+            </div>
+            
+            <h3>Uso en main.js</h3>
+            <div class="code-block">
+import { suma, resta, multiplicacion, division } from './math.js';
+
+console.log("Suma: 2 + 3 = " + suma(2, 3));
+console.log("Resta: 5 - 2 = " + resta(5, 2));
+console.log("Multiplicación: 4 * 6 = " + multiplicacion(4, 6));
+console.log("División: 15 / 3 = " + division(15, 3));
+            </div>
+            
+            <button class="btn" onclick="runExercise2()">Ejecutar Ejercicio 2</button>
+            
+            <div class="result" id="result2">
+                <h4>Resultados del Ejercicio 2:</h4>
+                <div class="result-content" id="result-content2"></div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h2>Ejercicio 3: Módulos Adicionales</h2>
+            <p>En este ejercicio, creamos módulos adicionales para manipulación de cadenas y operaciones con arrays.</p>
+            
+            <h3>stringOperations.js</h3>
+            <div class="code-block">
+// stringOperations.js - Módulo para manipulación de cadenas
+export const capitalizar = (texto) => {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+};
+
+export const invertirCadena = (texto) => {
+    return texto.split('').reverse().join('');
+};
+
+export const contarCaracteres = (texto) => {
+    return texto.length;
+};
+            </div>
+            
+            <h3>arrayUtilities.js</h3>
+            <div class="code-block">
+// arrayUtilities.js - Módulo para operaciones con arrays
+export const encontrarMaximo = (array) => {
+    return Math.max(...array);
+};
+
+export const encontrarMinimo = (array) => {
+    return Math.min(...array);
+};
+
+export const sumarArray = (array) => {
+    return array.reduce((total, num) => total + num, 0);
+};
+
+export const filtrarPares = (array) => {
+    return array.filter(num => num % 2 === 0);
+};
+            </div>
+            
+            <h3>Uso de los módulos</h3>
+            <div class="code-block">
+import { capitalizar, invertirCadena } from './stringOperations.js';
+import { encontrarMaximo, sumarArray } from './arrayUtilities.js';
+
+console.log("Capitalizar 'javascript': " + capitalizar("javascript"));
+console.log("Invertir 'hola': " + invertirCadena("hola"));
+
+const numeros = [1, 5, 3, 8, 2];
+console.log("Array: " + numeros);
+console.log("Máximo: " + encontrarMaximo(numeros));
+console.log("Suma: " + sumarArray(numeros));
+            </div>
+            
+            <button class="btn" onclick="runExercise3()">Ejecutar Ejercicio 3</button>
+            
+            <div class="result" id="result3">
+                <h4>Resultados del Ejercicio 3:</h4>
+                <div class="result-content" id="result-content3"></div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h2>Ejercicio 4: Combinación de Todos los Módulos</h2>
+            <p>Este ejercicio combina todos los módulos anteriores en un solo archivo principal.</p>
+            
+            <h3>main-completo.js</h3>
+            <div class="code-block">
+// Importar todos los módulos
+import { saludo } from './saludo.js';
+import { despedida } from './despedida.js';
+import mensaje from './mensaje.js';
+import { suma, resta, multiplicacion, division } from './math.js';
+import { capitalizar, invertirCadena } from './stringOperations.js';
+import { encontrarMaximo, sumarArray } from './arrayUtilities.js';
+
+// Ejecutar funciones de todos los módulos
+console.log("=== MÓDULOS BÁSICOS ===");
+console.log(saludo());
+console.log(despedida());
+console.log(mensaje);
+
+console.log("\n=== OPERACIONES MATEMÁTICAS ===");
+console.log("5 + 3 = " + suma(5, 3));
+console.log("10 - 4 = " + resta(10, 4));
+console.log("6 * 7 = " + multiplicacion(6, 7));
+console.log("20 / 5 = " + division(20, 5));
+
+console.log("\n=== OPERACIONES CON CADENAS ===");
+console.log("Capitalizar 'ejemplo': " + capitalizar("ejemplo"));
+console.log("Invertir 'javascript': " + invertirCadena("javascript"));
+
+console.log("\n=== OPERACIONES CON ARRAYS ===");
+const numeros = [12, 5, 23, 8, 17];
+console.log("Array: " + numeros);
+console.log("Máximo: " + encontrarMaximo(numeros));
+console.log("Suma total: " + sumarArray(numeros));
+            </div>
+            
+            <button class="btn" onclick="runExercise4()">Ejecutar Ejercicio 4</button>
+            
+            <div class="result" id="result4">
+                <h4>Resultados del Ejercicio 4:</h4>
+                <div class="result-content" id="result-content4"></div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+
+    <script>
+        // Implementación de los módulos directamente en el script para simular su funcionamiento
+        
+        // Ejercicio 1: Módulos Básicos
+        function runExercise1() {
+            const saludo = () => "¡Hola, Mundo!";
+            const despedida = () => "¡Adiós, Mundo!";
+            const mensaje = "Mensaje por defecto";
+            
+            const result = saludo() + "\n" + despedida() + "\n" + mensaje;
+            
+            document.getElementById('result-content1').textContent = result;
+            document.getElementById('result1').style.display = 'block';
+        }
+        
+        // Ejercicio 2: Módulo de Operaciones Matemáticas
+        function runExercise2() {
+            const suma = (a, b) => a + b;
+            const resta = (a, b) => a - b;
+            const multiplicacion = (a, b) => a * b;
+            const division = (a, b) => a / b;
+            
+            const result = "Suma: 2 + 3 = " + suma(2, 3) + "\n" +
+                          "Resta: 5 - 2 = " + resta(5, 2) + "\n" +
+                          "Multiplicación: 4 * 6 = " + multiplicacion(4, 6) + "\n" +
+                          "División: 15 / 3 = " + division(15, 3);
+            
+            document.getElementById('result-content2').textContent = result;
+            document.getElementById('result2').style.display = 'block';
+        }
+        
+        // Ejercicio 3: Módulos Adicionales
+        function runExercise3() {
+            const capitalizar = (texto) => texto.charAt(0).toUpperCase() + texto.slice(1);
+            const invertirCadena = (texto) => texto.split('').reverse().join('');
+            
+            const encontrarMaximo = (array) => Math.max(...array);
+            const sumarArray = (array) => array.reduce((total, num) => total + num, 0);
+            
+            const numeros = [1, 5, 3, 8, 2];
+            
+            const result = "Capitalizar 'javascript': " + capitalizar("javascript") + "\n" +
+                          "Invertir 'hola': " + invertirCadena("hola") + "\n\n" +
+                          "Array: " + numeros.join(", ") + "\n" +
+                          "Máximo: " + encontrarMaximo(numeros) + "\n" +
+                          "Suma: " + sumarArray(numeros);
+            
+            document.getElementById('result-content3').textContent = result;
+            document.getElementById('result3').style.display = 'block';
+        }
+        
+        // Ejercicio 4: Combinación de Todos los Módulos
+        function runExercise4() {
+            // Módulos básicos
+            const saludo = () => "¡Hola, Mundo!";
+            const despedida = () => "¡Adiós, Mundo!";
+            const mensaje = "Mensaje por defecto";
+            
+            // Operaciones matemáticas
+            const suma = (a, b) => a + b;
+            const resta = (a, b) => a - b;
+            const multiplicacion = (a, b) => a * b;
+            const division = (a, b) => a / b;
+            
+            // Operaciones con cadenas
+            const capitalizar = (texto) => texto.charAt(0).toUpperCase() + texto.slice(1);
+            const invertirCadena = (texto) => texto.split('').reverse().join('');
+            
+            // Operaciones con arrays
+            const encontrarMaximo = (array) => Math.max(...array);
+            const sumarArray = (array) => array.reduce((total, num) => total + num, 0);
+            
+            const numeros = [12, 5, 23, 8, 17];
+            
+            const result = "=== MÓDULOS BÁSICOS ===\n" +
+                          saludo() + "\n" +
+                          despedida() + "\n" +
+                          mensaje + "\n\n" +
+                          "=== OPERACIONES MATEMÁTICAS ===\n" +
+                          "5 + 3 = " + suma(5, 3) + "\n" +
+                          "10 - 4 = " + resta(10, 4) + "\n" +
+                          "6 * 7 = " + multiplicacion(6, 7) + "\n" +
+                          "20 / 5 = " + division(20, 5) + "\n\n" +
+                          "=== OPERACIONES CON CADENAS ===\n" +
+                          "Capitalizar 'ejemplo': " + capitalizar("ejemplo") + "\n" +
+                          "Invertir 'javascript': " + invertirCadena("javascript") + "\n\n" +
+                          "=== OPERACIONES CON ARRAYS ===\n" +
+                          "Array: " + numeros.join(", ") + "\n" +
+                          "Máximo: " + encontrarMaximo(numeros) + "\n" +
+                          "Suma total: " + sumarArray(numeros);
+            
+            document.getElementById('result-content4').textContent = result;
+            document.getElementById('result4').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
